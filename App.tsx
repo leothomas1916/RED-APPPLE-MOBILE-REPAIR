@@ -520,9 +520,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
             <div className="text-center md:text-left">
-              <div className="bg-white p-2 rounded-lg inline-block mb-4">
-                <img src="/red-apple-logo.png" alt="Red Apple Mobile Repair" className="h-10 w-auto" />
-              </div>
+              <h2 className="text-2xl font-bold text-white mb-4">{COMPANY_NAME}</h2>
               <p className="text-gray-400 text-sm mt-2">© 2024 {COMPANY_NAME}. All rights reserved.</p>
               <p className="text-gray-500 text-xs mt-1 max-w-xs">{ADDRESS}</p>
             </div>

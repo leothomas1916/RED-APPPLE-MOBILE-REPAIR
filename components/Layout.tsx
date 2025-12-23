@@ -33,11 +33,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 cursor-pointer group">
-              <img 
-                src="/red-apple-logo.png" 
-                alt="Red Apple Mobile Repair" 
-                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-              />
+              <span className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">{COMPANY_NAME}</span>
             </Link>
 
             {/* Desktop Nav */}
@@ -121,9 +117,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
             <div className="text-center md:text-left">
-              <div className="bg-white p-2 rounded-lg inline-block mb-4">
-                <img src="/red-apple-logo.png" alt="Red Apple Mobile Repair" className="h-10 w-auto" />
-              </div>
+              <h2 className="text-2xl font-bold text-white mb-4">{COMPANY_NAME}</h2>
               <p className="text-gray-400 text-sm mt-2">© 2024 {COMPANY_NAME}. All rights reserved.</p>
               <p className="text-gray-500 text-xs mt-1 max-w-xs">{ADDRESS}</p>
             </div>

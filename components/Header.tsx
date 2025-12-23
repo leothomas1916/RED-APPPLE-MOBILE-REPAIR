@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone, Menu, X } from 'lucide-react';
-import { PHONE_NUMBER } from '../constants';
+import { PHONE_NUMBER, COMPANY_NAME } from '../constants';
 
 interface HeaderProps {
   mobileMenuOpen: boolean;
@@ -38,11 +38,9 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-2 cursor-pointer group" 
             onClick={(e) => handleNavClick(e, 'home')}
           >
-            <img 
-              src="/red-apple-logo.png" 
-              alt="Red Apple Mobile Repair" 
-              className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            />
+            <span className="text-2xl font-extrabold text-gray-900 tracking-tight group-hover:text-red-600 transition-colors">
+              {COMPANY_NAME}
+            </span>
           </a>
 
           {/* Desktop Navigation */}
