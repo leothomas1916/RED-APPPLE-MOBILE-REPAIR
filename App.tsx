@@ -27,6 +27,37 @@ import RevealOnScroll from './components/RevealOnScroll';
 
 // --- Constants & Helpers ---
 
+const PORTFOLIO_ITEMS = [
+  {
+    id: 1,
+    title: "iPhone 13 Pro Max",
+    category: "Screen Replacement",
+    image: "https://images.unsplash.com/photo-1603539947673-c80b5b153b69?auto=format&fit=crop&q=80&w=600",
+    description: "Complete front glass restoration with True Tone preservation."
+  },
+  {
+    id: 2,
+    title: "MacBook Air M1",
+    category: "Screen Repair",
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=600",
+    description: "Broken LCD panel replaced with OEM display assembly."
+  },
+  {
+    id: 3,
+    title: "Samsung S23 Ultra",
+    category: "Back Glass",
+    image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&q=80&w=600",
+    description: "Laser machine removal of shattered back glass."
+  },
+  {
+    id: 4,
+    title: "iPad Pro 12.9",
+    category: "Battery Replacement",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=600",
+    description: "New battery installation restoring 10-hour battery life."
+  }
+];
+
 const FAQS = [
   {
     question: "How long does a typical repair take?",
@@ -287,6 +318,39 @@ export default function App() {
         </RevealOnScroll>
       </section>
 
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 scroll-mt-24">
+        <RevealOnScroll>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">Our Recent Work</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                See the quality of our repairs firsthand. We take pride in restoring devices to their factory condition.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {PORTFOLIO_ITEMS.map((item) => (
+                <div key={item.id} className="group relative overflow-hidden rounded-2xl shadow-lg bg-white">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                      <span className="text-red-400 text-xs font-bold uppercase tracking-wider mb-1">{item.category}</span>
+                      <h3 className="text-white font-bold text-lg">{item.title}</h3>
+                      <p className="text-gray-300 text-sm mt-1">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </RevealOnScroll>
+      </section>
+
       {/* Why Us / Stats Section */}
       <section id="why-us" className="py-20 bg-gray-50 px-4 sm:px-6 lg:px-8 scroll-mt-24">
         <RevealOnScroll>
@@ -445,36 +509,21 @@ export default function App() {
                       <a href="https://wa.me/8660663776" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-gray-300 hover:text-white transition-colors group">
                           <div className="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
                               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                        </svg>
-                        <span className="absolute left-full ml-4 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden md:block">
-                            Chat on WhatsApp
-                         </span>
-                      </a>
-                  </div>
-              </div>
-
-              {/* Map Side */}
-              <div className="w-full md:w-3/5 h-[400px] md:h-auto min-h-[400px] bg-gray-100 relative">
-                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3887.953360798727!2d77.6222756!3d12.9748349!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17abf5978f99%3A0xf9ade41a529ebc08!2sRED%20APPLE%20MOBILE%20REPAIR!5e0!3m2!1sen!2sin!4v1766509480625!5m2!1sen!2sin" 
-                  style={{ border: 0 }} 
-                  allowFullScreen 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0 w-full h-full"
-                ></iframe>
-              </div>
-          </div>
-        </RevealOnScroll>
-      </section>
+        </svg>
+        <span className="absolute left-full ml-4 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden md:block">
+            Chat on WhatsApp
+         </span>
+      </a>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
             <div className="text-center md:text-left">
-              <h3 className="text-2xl font-bold text-white mb-2">{COMPANY_NAME}</h3>
-              <p className="text-gray-400 text-sm">© 2024 {COMPANY_NAME}. All rights reserved.</p>
+              <div className="bg-white p-2 rounded-lg inline-block mb-4">
+                <img src="/red-apple-logo.png" alt="Red Apple Mobile Repair" className="h-10 w-auto" />
+              </div>
+              <p className="text-gray-400 text-sm mt-2">© 2024 {COMPANY_NAME}. All rights reserved.</p>
               <p className="text-gray-500 text-xs mt-1 max-w-xs">{ADDRESS}</p>
             </div>
             <div className="flex gap-8 text-gray-400 text-sm">
@@ -494,22 +543,6 @@ export default function App() {
 
       {/* Floating Chat Widget */}
       <ChatWidget />
-      
-      {/* Floating WhatsApp Button */}
-      <a
-        href="https://wa.me/8660663776"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 left-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-2xl transition-all transform hover:scale-105 hover:-translate-y-1 flex items-center justify-center group"
-        aria-label="Chat on WhatsApp"
-      >
-        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" className="w-8 h-8">
-           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-        </svg>
-        <span className="absolute left-full ml-4 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden md:block">
-            Chat on WhatsApp
-         </span>
-      </a>
     </div>
   );
 }
