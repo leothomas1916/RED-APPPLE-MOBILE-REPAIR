@@ -60,8 +60,8 @@ export default function Home() {
           <div className="relative">
              <div className="absolute inset-0 bg-gradient-to-tr from-red-100 to-blue-50 rounded-3xl transform rotate-3 scale-95 -z-10"></div>
              <img 
-               src="https://picsum.photos/800/600?random=10" 
-               alt="Technician repairing phone" 
+               src="https://images.unsplash.com/photo-1597424214711-2051b72a0888?auto=format&fit=crop&q=80&w=1000" 
+               alt="Professional technician repairing mobile phone" 
                className="rounded-3xl shadow-2xl w-full object-cover h-[500px]"
              />
              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 max-w-xs hidden md:block">

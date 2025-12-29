@@ -246,8 +246,8 @@ export default function App() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-tr from-red-100 to-blue-50 rounded-3xl transform rotate-3 scale-95 -z-10"></div>
               <img 
-                src="https://picsum.photos/800/600?random=10" 
-                alt="Technician repairing phone" 
+                src="https://images.unsplash.com/photo-1597424214711-2051b72a0888?auto=format&fit=crop&q=80&w=1000" 
+                alt="Professional technician repairing mobile phone" 
                 className="rounded-3xl shadow-2xl w-full object-cover h-[500px]"
               />
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 max-w-xs hidden md:block">
@@ -530,11 +530,6 @@ export default function App() {
               <button onClick={() => scrollToSection('why-us')} className="hover:text-white transition-colors">Why Us</button>
               <button onClick={() => scrollToSection('contact')} className="hover:text-white transition-colors">Contact</button>
             </div>
-          </div>
-          <div className="border-t border-gray-800 pt-8">
-             <p className="text-gray-500 text-xs text-center md:text-left leading-relaxed max-w-4xl">
-               Red Apple Mobile Repair is an independent service provider for Apple products and other android brands. All Apple And Android product names, logos, and images are trademarks of Apple Inc And other Android Brands. We are not affiliated with or endorsed by Apple Inc And Android Brands.
-             </p>
           </div>
         </div>
       </footer>

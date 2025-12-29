@@ -128,11 +128,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
             </div>
           </div>
-          <div className="border-t border-gray-800 pt-8">
-             <p className="text-gray-500 text-xs text-center md:text-left leading-relaxed max-w-4xl">
-               Red Apple Mobile Repair is an independent service provider for Apple products and other android brands. All Apple And Android product names, logos, and images are trademarks of Apple Inc And other Android Brands. We are not affiliated with or endorsed by Apple Inc And Android Brands.
-             </p>
-          </div>
         </div>
       </footer>
 

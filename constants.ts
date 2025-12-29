@@ -84,6 +84,6 @@ export const REVIEWS: Review[] = [
   }
 ];
 
-export const COMPANY_NAME = "Red Apple Repair";
+export const COMPANY_NAME = "Red Apple Mobile Repair";
 export const PHONE_NUMBER = "866-066-3776";
 export const ADDRESS = "Metro Pillar 125, Off MG Road Police Station, 37 Metro Road, Opp. Bhadra Landmark, Halasuru, Gupta Layout, Bengaluru, KA 560008";
