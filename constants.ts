@@ -88,7 +88,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     id: 1,
     title: "iPhone 13 Pro Max",
     category: "Screen Replacement",
-    image: "https://images.unsplash.com/photo-1603539947673-c80b5b153b69?auto=format&fit=crop&q=80&w=600",
+    image: "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&q=80&w=800",
     description: "Complete front glass restoration with True Tone preservation."
   },
   {

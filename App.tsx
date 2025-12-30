@@ -174,7 +174,7 @@ export default function App() {
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold">
                 <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
-                Now offering same-day screen repairs
+                #1 ranked in Bangalore with same-day repair for iPhone Screen, Back Glass and Battery replacement.
               </div>
               <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900">
                 Bring Your Device <br/>
@@ -215,9 +215,10 @@ export default function App() {
             
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-tr from-red-100 to-blue-50 rounded-3xl transform rotate-3 scale-95 -z-10"></div>
+              {/* Updated Image to Professional Technician Context */}
               <img 
-                src="https://images.unsplash.com/photo-1597424214711-2051b72a0888?auto=format&fit=crop&q=80&w=1000" 
-                alt="Professional technician repairing mobile phone" 
+                src="https://images.unsplash.com/photo-1597872253308-59714ebc0faa?auto=format&fit=crop&q=80&w=1000" 
+                alt="Professional technician repairing mobile phone screen with microscope and soldering iron" 
                 className="rounded-3xl shadow-2xl w-full object-cover h-[500px]"
               />
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 max-w-xs hidden md:block">
@@ -421,7 +422,7 @@ export default function App() {
         </RevealOnScroll>
       </section>
 
-      {/* Contact / Booking Section */}
+      {/* Contact Section */}
       <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 scroll-mt-24">
         <RevealOnScroll>
           <div className="max-w-5xl mx-auto mb-16 text-center">
@@ -479,11 +480,57 @@ export default function App() {
                       <a href="https://wa.me/8660663776" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-gray-300 hover:text-white transition-colors group">
                           <div className="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
                               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-        </svg>
-        <span className="absolute left-full ml-4 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden md:block">
-            Chat on WhatsApp
-         </span>
-      </a>
+                          </svg>
+                          <span className="absolute left-full ml-4 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden md:block">
+                              Chat on WhatsApp
+                          </span>
+                      </a>
+                  </div>
+              </div>
+
+              {/* Map/Image Side */}
+              <div className="bg-gray-100 md:w-3/5 h-[400px] md:h-auto min-h-[400px]">
+                 <iframe 
+                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3887.953360798727!2d77.6222756!3d12.9748349!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17abf5978f99%3A0xf9ade41a529ebc08!2sRED%20APPLE%20MOBILE%20REPAIR!5e0!3m2!1sen!2sin!4v1767109446646!5m2!1sen!2sin" 
+                   width="100%" 
+                   height="100%" 
+                   style={{border:0}} 
+                   allowFullScreen 
+                   loading="lazy" 
+                   referrerPolicy="no-referrer-when-downgrade"
+                   className="w-full h-full object-cover grayscale-0 hover:grayscale-0 transition-all duration-500"
+                 ></iframe>
+              </div>
+          </div>
+        </RevealOnScroll>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
+            <div className="text-center md:text-left">
+              <h2 className="text-2xl font-bold text-white mb-4">{COMPANY_NAME}</h2>
+              <p className="text-gray-400 text-sm mt-2">© 2024 {COMPANY_NAME}. All rights reserved.</p>
+              <p className="text-gray-500 text-xs mt-1 max-w-xs">{ADDRESS}</p>
+              <p className="text-gray-500 text-xs mt-4 max-w-md leading-relaxed">
+                {COMPANY_NAME} is an independent service provider for Apple and Android products. All Apple and Android product names, logos, and images are trademarks of Apple Inc and Android. We are not affiliated with or endorsed by Apple Inc and Android.
+              </p>
+            </div>
+            <div className="flex gap-8 text-gray-400 text-sm">
+              {['Home', 'Services', 'Portfolio', 'Why Us', 'Contact'].map((item) => (
+                <button 
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
+                  className="hover:text-white transition-colors uppercase tracking-wider"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
 
       {/* Floating Chat Widget */}
       <ChatWidget />

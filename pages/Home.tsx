@@ -9,28 +9,37 @@ import {
 } from 'lucide-react';
 import { REVIEWS } from '../constants';
 import RevealOnScroll from '../components/RevealOnScroll';
+import RepairStatusTracker from '../components/RepairStatusTracker';
+import BeforeAfterSlider from '../components/BeforeAfterSlider';
+import ProcessTimeline from '../components/ProcessTimeline';
 
 export default function Home() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="pt-12 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
+      <section className="pt-12 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+         {/* Decorative Background Elements */}
+         <div className="absolute top-20 right-0 w-96 h-96 bg-red-100 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+         <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-30 translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+
         <RevealOnScroll>
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
             <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold border border-red-200">
                 <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
-                Now offering same-day screen repairs
+                #1 ranked in Bangalore with same-day repair for iPhone Screen, Back Glass and Battery replacement.
               </div>
-              <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900">
+              <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900 tracking-tight">
                 Bring Your Device <br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600">
                   Back to Life
                 </span>
               </h1>
               <p className="text-xl text-gray-600 max-w-lg leading-relaxed">
-                Expert repair services for iPhones, Androids, and Laptops. fast turnaround, OEM quality parts, and a 90-day warranty on all fixes.
+                Expert repair services for iPhones, Androids, and Laptops. Fast turnaround, OEM quality parts, and a 90-day warranty on all fixes.
               </p>
+              
+              {/* Quick Actions */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
                   to="/services"
@@ -40,13 +49,13 @@ export default function Home() {
                 </Link>
                 <Link 
                   to="/contact"
-                  className="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full font-bold hover:border-gray-400 transition-all flex items-center justify-center"
+                  className="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full font-bold hover:border-gray-400 transition-all flex items-center justify-center hover:bg-gray-50"
                 >
                   Get a Quote
                 </Link>
               </div>
               
-              <div className="flex items-center gap-8 pt-4">
+              <div className="flex items-center gap-8 pt-4 border-t border-gray-100 w-fit pr-8">
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4].map((i) => (
                     <img key={i} src={`https://picsum.photos/40/40?random=${i}`} alt="Customer" className="w-10 h-10 rounded-full border-2 border-white" />
@@ -60,29 +69,110 @@ export default function Home() {
             </div>
             
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-red-100 to-blue-50 rounded-3xl transform rotate-3 scale-95 -z-10"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1597424214711-2051b72a0888?auto=format&fit=crop&q=80&w=1000" 
-                alt="Professional technician repairing mobile phone" 
-                className="rounded-3xl shadow-2xl w-full object-cover h-[500px]"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 max-w-xs hidden md:block">
-                  <div className="flex items-center gap-4 mb-2">
-                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                      <CheckCircle size={24} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Status</p>
-                      <p className="font-bold text-gray-900">Device Ready</p>
-                    </div>
+              {/* Floating Status Tracker */}
+              <div className="absolute -top-10 -right-4 z-20 transform rotate-2 hidden xl:block hover:rotate-0 transition-transform duration-300">
+                  <RepairStatusTracker />
+              </div>
+
+              {/* Main Hero Image */}
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                  <img 
+                    src="https://images.unsplash.com/photo-1597872253308-59714ebc0faa?auto=format&fit=crop&q=80&w=1000" 
+                    alt="Professional technician repairing mobile phone screen with microscope and soldering iron" 
+                    className="w-full object-cover h-[550px] transform hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  
+                  {/* Status Badge */}
+                  <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-gray-100 max-w-xs flex items-center gap-4">
+                      <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                          <CheckCircle size={24} />
+                      </div>
+                      <div>
+                          <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">Current Status</p>
+                          <p className="font-bold text-gray-900">Technicians Online</p>
+                      </div>
                   </div>
-                  <div className="h-1 w-full bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-green-500 w-full"></div>
-                  </div>
+              </div>
+
+              {/* Mobile View of Tracker */}
+              <div className="xl:hidden mt-8">
+                  <RepairStatusTracker />
               </div>
             </div>
           </div>
         </RevealOnScroll>
+      </section>
+
+      {/* Repair Process Timeline Section (Unique Idea) */}
+      <section className="py-20 bg-white border-b border-gray-50">
+        <RevealOnScroll>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div className="text-center mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">How We Fix It</h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Transparent, fast, and reliable. Track your device's journey from broken to brand new.
+                </p>
+             </div>
+             <ProcessTimeline />
+          </div>
+        </RevealOnScroll>
+      </section>
+
+      {/* Before & After Interactive Section (Unique Idea) */}
+      <section className="py-24 bg-gray-900 text-white overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                  <RevealOnScroll>
+                      <div>
+                          <h2 className="text-4xl font-bold mb-6">See the Difference</h2>
+                          <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+                              Don't just take our word for it. Slide to see how we restore devices to their original glory using OEM-grade parts and precision tools.
+                          </p>
+                          
+                          <div className="space-y-6">
+                              <div className="flex items-start gap-4">
+                                  <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-bold text-lg">1</div>
+                                  <div>
+                                      <h4 className="font-bold text-xl mb-1">Precision Laser Removal</h4>
+                                      <p className="text-gray-400">We use advanced lasers to remove broken back glass without opening the phone.</p>
+                                  </div>
+                              </div>
+                              <div className="flex items-start gap-4">
+                                  <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-bold text-lg">2</div>
+                                  <div>
+                                      <h4 className="font-bold text-xl mb-1">True Tone Retention</h4>
+                                      <p className="text-gray-400">We transfer your screen's original data so you don't lose FaceID or True Tone features.</p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <Link to="/portfolio" className="inline-block mt-10 text-white font-bold border-b-2 border-red-600 pb-1 hover:text-red-500 transition-colors">
+                              View Full Portfolio
+                          </Link>
+                      </div>
+                  </RevealOnScroll>
+
+                  <RevealOnScroll className="delay-200">
+                      <div className="relative">
+                          {/* Decorative dots */}
+                          <div className="absolute -top-10 -right-10 grid grid-cols-5 gap-2 opacity-20">
+                              {[...Array(25)].map((_,i) => <div key={i} className="w-2 h-2 bg-red-500 rounded-full"></div>)}
+                          </div>
+                          
+                          <BeforeAfterSlider 
+                            beforeImage="https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&q=80&w=800"
+                            afterImage="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&q=80&w=800"
+                            alt="iPhone Screen"
+                          />
+                          <p className="text-center text-sm text-gray-500 mt-4 flex items-center justify-center gap-2">
+                              <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
+                              Drag slider to compare
+                          </p>
+                      </div>
+                  </RevealOnScroll>
+              </div>
+          </div>
       </section>
 
       {/* Supported Models Section */}
