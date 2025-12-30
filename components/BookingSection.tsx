@@ -11,7 +11,10 @@ import {
   ArrowRight,
   Calendar,
   User,
-  Phone
+  Phone,
+  CheckCircle,
+  AlertCircle,
+  Loader2
 } from 'lucide-react';
 import { PHONE_NUMBER } from '../constants';
 
@@ -34,17 +37,43 @@ const BookingSection: React.FC = () => {
     model: '',
     date: ''
   });
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus('submitting');
     
-    // Construct WhatsApp Message
     const issueLabel = REPAIR_ISSUES.find(i => i.id === selectedIssue)?.label || 'General Inquiry';
-    const message = `*New Booking Request*%0A%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Device:* ${formData.model}%0A*Issue:* ${issueLabel}%0A*Preferred Date:* ${formData.date}`;
     
-    // Redirect to WhatsApp
-    const whatsappUrl = `https://wa.me/${PHONE_NUMBER.replace(/\D/g,'')}?text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    const data = {
+        name: formData.name,
+        phone: formData.phone,
+        model: formData.model,
+        date: formData.date,
+        issue: issueLabel,
+        _subject: `New Repair Booking: ${formData.model} - ${issueLabel}`
+    };
+
+    try {
+        const response = await fetch("https://formspree.io/f/xzdblzgo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            setStatus('success');
+            setFormData({ name: '', phone: '', model: '', date: '' });
+            setSelectedIssue('');
+        } else {
+            setStatus('error');
+        }
+    } catch (error) {
+        setStatus('error');
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,82 +121,115 @@ const BookingSection: React.FC = () => {
           <h3 className="text-2xl font-bold text-gray-900 mb-2">2. Your Details</h3>
           <p className="text-gray-500 mb-8">Fill in your info to schedule your repair.</p>
 
-          <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
-              <div className="relative">
-                <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                <input
-                  required
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="John Doe"
-                  className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                <div className="relative">
-                  <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                  <input
-                    required
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="98765 43210"
-                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all"
-                  />
+          {status === 'success' ? (
+            <div className="flex flex-col items-center justify-center h-64 text-center animate-fade-in-up">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-4">
+                    <CheckCircle size={32} />
                 </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Device Model</label>
+                <h4 className="text-xl font-bold text-gray-900 mb-2">Booking Received!</h4>
+                <p className="text-gray-600 mb-6">We have received your request. Our technician will call you shortly to confirm the appointment.</p>
+                <button 
+                    onClick={() => setStatus('idle')}
+                    className="text-red-600 font-semibold hover:text-red-700"
+                >
+                    Book another repair
+                </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
                 <div className="relative">
-                  <Smartphone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                  <input
+                    <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                    <input
                     required
                     type="text"
-                    name="model"
-                    value={formData.model}
+                    name="name"
+                    value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="e.g. iPhone 13 Pro"
-                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all"
-                  />
+                    placeholder="John Doe"
+                    disabled={status === 'submitting'}
+                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all disabled:opacity-50"
+                    />
                 </div>
-              </div>
-            </div>
+                </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
-              <div className="relative">
-                <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                <input
-                  type="date"
-                  name="date"
-                  value={formData.date}
-                  onChange={handleInputChange}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all text-gray-600"
-                />
-              </div>
-            </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                    <div className="relative">
+                    <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                    <input
+                        required
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="98765 43210"
+                        disabled={status === 'submitting'}
+                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all disabled:opacity-50"
+                    />
+                    </div>
+                </div>
+                
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Device Model</label>
+                    <div className="relative">
+                    <Smartphone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                    <input
+                        required
+                        type="text"
+                        name="model"
+                        value={formData.model}
+                        onChange={handleInputChange}
+                        placeholder="e.g. iPhone 13 Pro"
+                        disabled={status === 'submitting'}
+                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all disabled:opacity-50"
+                    />
+                    </div>
+                </div>
+                </div>
 
-            <button
-              type="submit"
-              className="w-full bg-red-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-red-700 hover:shadow-red-200 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 mt-4"
-            >
-              Book Appointment <ArrowRight size={20} />
-            </button>
-            
-            <p className="text-xs text-center text-gray-400 mt-4">
-              Clicking book will open WhatsApp with your details pre-filled.
-            </p>
-          </form>
+                <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
+                <div className="relative">
+                    <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                    <input
+                    type="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleInputChange}
+                    disabled={status === 'submitting'}
+                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all text-gray-600 disabled:opacity-50"
+                    />
+                </div>
+                </div>
+
+                {status === 'error' && (
+                    <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg text-sm">
+                        <AlertCircle size={16} />
+                        <span>Something went wrong. Please try again or call us directly.</span>
+                    </div>
+                )}
+
+                <button
+                type="submit"
+                disabled={status === 'submitting'}
+                className="w-full bg-red-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-red-700 hover:shadow-red-200 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                {status === 'submitting' ? (
+                    <>
+                        <Loader2 size={20} className="animate-spin" />
+                        Processing...
+                    </>
+                ) : (
+                    <>
+                        Book Appointment <ArrowRight size={20} />
+                    </>
+                )}
+                </button>
+            </form>
+          )}
         </div>
       </div>
     </div>
