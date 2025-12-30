@@ -125,19 +125,21 @@ export default function Contact() {
 
       {/* FAQ Section */}
       <section className="pb-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-3xl mx-auto">
-           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">Frequently Asked Questions</h2>
-            <p className="text-lg text-gray-600">
-              Got questions? We've got answers. Here is everything you need to know about our repair process.
-            </p>
+        <RevealOnScroll>
+          <div className="max-w-3xl mx-auto">
+             <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">Frequently Asked Questions</h2>
+              <p className="text-lg text-gray-600">
+                Got questions? We've got answers. Here is everything you need to know about our repair process.
+              </p>
+            </div>
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 md:p-6">
+              {FAQS.map((faq, index) => (
+                <FAQItem key={index} question={faq.question} answer={faq.answer} />
+              ))}
+            </div>
           </div>
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 md:p-6">
-            {FAQS.map((faq, index) => (
-              <FAQItem key={index} question={faq.question} answer={faq.answer} />
-            ))}
-          </div>
-        </div>
+        </RevealOnScroll>
       </section>
     </div>
   );
