@@ -9,6 +9,7 @@ import {
   CheckCircle 
 } from 'lucide-react';
 import { SERVICES } from '../constants';
+import RevealOnScroll from '../components/RevealOnScroll';
 
 const ServiceCard: React.FC<{ 
   title: string; 
@@ -55,26 +56,28 @@ export default function Services() {
 
   return (
     <div className="py-20 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">Premium Repair Services</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We specialize in fixing the issues that matter most. From shattered screens to dying batteries, we handle it all with precision.
-          </p>
-        </div>
+      <RevealOnScroll>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">Premium Repair Services</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              We specialize in fixing the issues that matter most. From shattered screens to dying batteries, we handle it all with precision.
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES.map((service) => (
-            <ServiceCard 
-              key={service.id}
-              title={service.title}
-              description={service.description}
-              icon={getIcon(service.iconName)}
-              popular={service.popular}
-            />
-          ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {SERVICES.map((service) => (
+              <ServiceCard 
+                key={service.id}
+                title={service.title}
+                description={service.description}
+                icon={getIcon(service.iconName)}
+                popular={service.popular}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </RevealOnScroll>
     </div>
   );
 }

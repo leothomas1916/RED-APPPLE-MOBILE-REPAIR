@@ -36,3 +36,11 @@ export interface ChatMessage {
   text: string;
   timestamp: Date;
 }
+
+export interface PortfolioItem {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  description: string;
+}

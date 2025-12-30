@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X } from 'lucide-react';
-import { PHONE_NUMBER, COMPANY_NAME, ADDRESS } from '../constants';
+import { PHONE_NUMBER, COMPANY_NAME, ADDRESS, SEO_KEYWORDS } from '../constants';
 import ChatWidget from './ChatWidget';
 
 interface LayoutProps {
@@ -21,6 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
+    { name: 'Portfolio', path: '/portfolio' },
     { name: 'Why Us', path: '/why-us' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -61,7 +62,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <span>{PHONE_NUMBER}</span>
               </a>
               <Link 
-                to="/book"
+                to="/contact"
                 className="bg-gray-900 text-white px-6 py-2.5 rounded-full font-medium hover:bg-gray-800 transition-all shadow-lg hover:shadow-gray-300/50 text-sm"
               >
                 Book Repair
@@ -91,7 +92,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </Link>
             ))}
              <Link 
-                to="/book"
+                to="/contact"
                 className="bg-red-600 text-white text-center font-bold py-3 px-4 rounded-lg shadow-md mx-4 mt-4"
               >
                 Book a Repair
@@ -124,8 +125,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="flex gap-8 text-gray-400 text-sm">
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <Link to="/services" className="hover:text-white transition-colors">Services</Link>
+              <Link to="/portfolio" className="hover:text-white transition-colors">Portfolio</Link>
               <Link to="/why-us" className="hover:text-white transition-colors">Why Us</Link>
               <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 pt-8 mt-8">
+            <p className="text-xs text-gray-500 font-semibold mb-3 text-center md:text-left uppercase tracking-wider">Popular Searches</p>
+            <div className="flex flex-wrap justify-center md:justify-start gap-2">
+              {SEO_KEYWORDS.map((keyword, index) => (
+                <span key={index} className="text-xs text-gray-500 bg-gray-800 px-3 py-1 rounded-full hover:text-gray-300 transition-colors cursor-default">
+                  {keyword}
+                </span>
+              ))}
             </div>
           </div>
         </div>

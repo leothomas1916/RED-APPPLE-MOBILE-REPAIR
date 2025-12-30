@@ -1,5 +1,4 @@
-import { RepairService, ServiceType, Review } from './types';
-import { Smartphone, Battery, Monitor, Droplets, Cpu, Settings } from 'lucide-react';
+import { RepairService, ServiceType, Review, PortfolioItem } from './types';
 
 export const SERVICES: RepairService[] = [
   {
@@ -82,6 +81,46 @@ export const REVIEWS: Review[] = [
     rating: 5, 
     date: "2 months ago" 
   }
+];
+
+export const PORTFOLIO_ITEMS: PortfolioItem[] = [
+  {
+    id: 1,
+    title: "iPhone 13 Pro Max",
+    category: "Screen Replacement",
+    image: "https://images.unsplash.com/photo-1603539947673-c80b5b153b69?auto=format&fit=crop&q=80&w=600",
+    description: "Complete front glass restoration with True Tone preservation."
+  },
+  {
+    id: 2,
+    title: "MacBook Air M1",
+    category: "Screen Repair",
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=600",
+    description: "Broken LCD panel replaced with OEM display assembly."
+  },
+  {
+    id: 3,
+    title: "Samsung S23 Ultra",
+    category: "Back Glass",
+    image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&q=80&w=600",
+    description: "Laser machine removal of shattered back glass."
+  },
+  {
+    id: 4,
+    title: "iPad Pro 12.9",
+    category: "Battery Replacement",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=600",
+    description: "New battery installation restoring 10-hour battery life."
+  }
+];
+
+export const SEO_KEYWORDS = [
+  "Mobile Repair",
+  "Mobile Phone",
+  "Mobile Phone Service",
+  "Fix Phone",
+  "Phone Service",
+  "Mobile Repair Shop"
 ];
 
 export const COMPANY_NAME = "Red Apple Mobile Repair";
