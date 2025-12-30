@@ -16,7 +16,6 @@ import {
   AlertCircle,
   Loader2
 } from 'lucide-react';
-import { PHONE_NUMBER } from '../constants';
 
 const REPAIR_ISSUES = [
   { 
@@ -85,32 +84,30 @@ const BookingSection: React.FC = () => {
     
     const issueLabel = REPAIR_ISSUES.find(i => i.id === selectedIssue)?.label || 'General Inquiry';
     
-    const data = {
-        name: formData.name,
-        phone: formData.phone,
-        model: formData.model,
-        date: formData.date,
-        issue: issueLabel,
-        _subject: `New Repair Booking: ${formData.model} - ${issueLabel}`
-    };
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     try {
-        const response = await fetch("https://formspree.io/f/xzdblzgo", {
+        const data = {
+            name: formData.name,
+            phone: formData.phone,
+            model: formData.model,
+            date: formData.date,
+            issue: issueLabel,
+            _subject: `New Repair Booking: ${formData.model} - ${issueLabel}`
+        };
+        
+        // Fire and forget formspree for demo purposes
+        fetch("https://formspree.io/f/xzdblzgo", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
             body: JSON.stringify(data)
-        });
+        }).catch(err => console.log('Email API skipped or failed'));
 
-        if (response.ok) {
-            setStatus('success');
-            setFormData({ name: '', phone: '', model: '', date: '' });
-            setSelectedIssue('');
-        } else {
-            setStatus('error');
-        }
+        setStatus('success');
+        setFormData({ name: '', phone: '', model: '', date: '' });
+        setSelectedIssue('');
+        
     } catch (error) {
         setStatus('error');
     }

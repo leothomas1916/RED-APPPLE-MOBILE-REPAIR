@@ -1,13 +1,13 @@
 import React from 'react';
-import Layout from './components/Layout';
-import Home from './pages/Home';
-import Services from './pages/Services';
-import Portfolio from './pages/Portfolio';
-import WhyUs from './pages/WhyUs';
-import Booking from './pages/Booking';
-import Contact from './pages/Contact';
+import Layout from '../components/Layout';
+import Home from './Home';
+import Services from './Services';
+import Portfolio from './Portfolio';
+import WhyUs from './WhyUs';
+import Contact from './Contact';
+import Booking from './Booking';
 
-export default function App() {
+export default function LandingPage() {
   return (
     <Layout>
       <section id="home" className="scroll-mt-20">
