@@ -10,7 +10,24 @@ interface BeforeAfterProps {
 const BeforeAfterSlider: React.FC<BeforeAfterProps> = ({ beforeImage, afterImage, alt }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const updateWidth = () => {
+        if (containerRef.current) {
+            setContainerWidth(containerRef.current.offsetWidth);
+        }
+    };
+
+    updateWidth();
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(containerRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleMove = (event: React.MouseEvent | React.TouchEvent) => {
     if (!containerRef.current) return;
@@ -56,7 +73,7 @@ const BeforeAfterSlider: React.FC<BeforeAfterProps> = ({ beforeImage, afterImage
   return (
     <div 
         ref={containerRef}
-        className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden cursor-col-resize select-none shadow-2xl border-4 border-white"
+        className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden cursor-col-resize select-none shadow-2xl border-4 border-white bg-gray-100"
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}
     >
@@ -65,8 +82,9 @@ const BeforeAfterSlider: React.FC<BeforeAfterProps> = ({ beforeImage, afterImage
         src={afterImage} 
         alt={`Fixed ${alt}`} 
         className="absolute top-0 left-0 w-full h-full object-cover" 
+        draggable={false}
       />
-      <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10">
+      <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10 pointer-events-none">
         AFTER
       </div>
 
@@ -79,9 +97,10 @@ const BeforeAfterSlider: React.FC<BeforeAfterProps> = ({ beforeImage, afterImage
             src={beforeImage} 
             alt={`Broken ${alt}`} 
             className="absolute top-0 left-0 max-w-none h-full object-cover"
-            style={{ width: containerRef.current ? containerRef.current.offsetWidth : '100%' }}
+            style={{ width: containerWidth ? `${containerWidth}px` : '100%' }}
+            draggable={false}
         />
-        <div className="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+        <div className="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg pointer-events-none">
             BEFORE
         </div>
       </div>

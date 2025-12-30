@@ -1,19 +1,31 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
-  CheckCircle, 
-  Smartphone, 
-  Tablet, 
-  Laptop 
+  CheckCircle 
 } from 'lucide-react';
 import { REVIEWS } from '../constants';
 import RevealOnScroll from '../components/RevealOnScroll';
 import RepairStatusTracker from '../components/RepairStatusTracker';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import ProcessTimeline from '../components/ProcessTimeline';
+import DeviceModels from '../components/DeviceModels';
 
 export default function Home() {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -41,18 +53,20 @@ export default function Home() {
               
               {/* Quick Actions */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link 
-                  to="/services"
+                <a 
+                  href="#services"
+                  onClick={(e) => handleScroll(e, 'services')}
                   className="px-8 py-4 bg-red-600 text-white rounded-full font-bold shadow-lg shadow-red-200 hover:bg-red-700 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
                 >
                   View Services <ArrowRight size={20} />
-                </Link>
-                <Link 
-                  to="/contact"
+                </a>
+                <a 
+                  href="#booking"
+                  onClick={(e) => handleScroll(e, 'booking')}
                   className="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full font-bold hover:border-gray-400 transition-all flex items-center justify-center hover:bg-gray-50"
                 >
-                  Get a Quote
-                </Link>
+                  Book Repair
+                </a>
               </div>
               
               <div className="flex items-center gap-8 pt-4 border-t border-gray-100 w-fit pr-8">
@@ -77,8 +91,8 @@ export default function Home() {
               {/* Main Hero Image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                   <img 
-                    src="https://images.unsplash.com/photo-1597872253308-59714ebc0faa?auto=format&fit=crop&q=80&w=1000" 
-                    alt="Professional technician repairing mobile phone screen with microscope and soldering iron" 
+                    src="https://images.unsplash.com/photo-1596742578443-7682e525c489?auto=format&fit=crop&q=80&w=1000" 
+                    alt="Shattered mobile phone screen illustrating damage we repair" 
                     className="w-full object-cover h-[550px] transform hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
@@ -147,9 +161,9 @@ export default function Home() {
                               </div>
                           </div>
 
-                          <Link to="/portfolio" className="inline-block mt-10 text-white font-bold border-b-2 border-red-600 pb-1 hover:text-red-500 transition-colors">
+                          <a href="#portfolio" className="inline-block mt-10 text-white font-bold border-b-2 border-red-600 pb-1 hover:text-red-500 transition-colors">
                               View Full Portfolio
-                          </Link>
+                          </a>
                       </div>
                   </RevealOnScroll>
 
@@ -161,7 +175,7 @@ export default function Home() {
                           </div>
                           
                           <BeforeAfterSlider 
-                            beforeImage="https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&q=80&w=800"
+                            beforeImage="https://images.unsplash.com/photo-1588698942203-7e44ec3c2202?auto=format&fit=crop&q=80&w=800"
                             afterImage="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&q=80&w=800"
                             alt="iPhone Screen"
                           />
@@ -175,34 +189,18 @@ export default function Home() {
           </div>
       </section>
 
-      {/* Supported Models Section */}
-      <section className="py-12 bg-white border-b border-gray-100">
+      {/* Supported Models Section - REPLACED WITH DETAILED LIST */}
+      <section className="py-16 bg-white border-b border-gray-100">
         <RevealOnScroll>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
-                <h2 className="text-2xl font-bold text-gray-900">Devices We Repair</h2>
-                <p className="text-gray-500 text-sm mt-1">Specialized service for all major brands</p>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Devices We Repair</h2>
+                <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                   Select your device type to see the full list of supported models and services.
+                </p>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                {[
-                  { name: 'Apple iPhone', Icon: Smartphone },
-                  { name: 'Samsung', Icon: Smartphone },
-                  { name: 'OnePlus', Icon: Smartphone },
-                  { name: 'Oppo / Vivo', Icon: Smartphone },
-                  { name: 'iPad', Icon: Tablet },
-                  { name: 'MacBook', Icon: Laptop },
-                  { name: 'Windows Laptop', Icon: Laptop },
-                  { name: 'Android Tablet', Icon: Tablet },
-                ].map((brand, index) => (
-                  <div key={index} className="flex flex-col items-center p-6 bg-gray-50 rounded-xl hover:bg-red-50 hover:shadow-md transition-all border border-gray-100 group cursor-default">
-                      <div className="text-gray-400 group-hover:text-red-600 transition-colors mb-3">
-                        <brand.Icon size={32} />
-                      </div>
-                      <span className="font-bold text-gray-800">{brand.name}</span>
-                  </div>
-                ))}
-            </div>
+            <DeviceModels />
           </div>
         </RevealOnScroll>
       </section>

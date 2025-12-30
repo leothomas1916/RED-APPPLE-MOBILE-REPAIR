@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X } from 'lucide-react';
-import { PHONE_NUMBER, COMPANY_NAME, ADDRESS, SEO_KEYWORDS } from '../constants';
+import React, { useState } from 'react';
+import { Phone, Menu, X, Facebook, Instagram, MapPin, MessageCircle } from 'lucide-react';
+import { PHONE_NUMBER, COMPANY_NAME, ADDRESS } from '../constants';
 import ChatWidget from './ChatWidget';
 
 interface LayoutProps {
@@ -10,21 +9,31 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
-
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setMobileMenuOpen(false);
-    window.scrollTo(0, 0);
-  }, [location]);
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Why Us', path: '/why-us' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Home', href: '#home' },
+    { name: 'Services', href: '#services' },
+    { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Why Us', href: '#why-us' },
+    { name: 'Contact', href: '#contact' },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      // Offset for fixed header
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-red-100 selection:text-red-900 flex flex-col">
@@ -33,22 +42,25 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 cursor-pointer group">
+            <a 
+              href="#home" 
+              onClick={(e) => handleNavClick(e, '#home')}
+              className="flex items-center gap-2 cursor-pointer group"
+            >
               <span className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">{COMPANY_NAME}</span>
-            </Link>
+            </a>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex gap-8">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.name}
-                  to={item.path}
-                  className={`text-sm uppercase tracking-wide font-medium transition-colors ${
-                    location.pathname === item.path ? 'text-red-600 font-bold' : 'text-gray-600 hover:text-red-600'
-                  }`}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="text-sm uppercase tracking-wide font-medium text-gray-600 hover:text-red-600 transition-colors"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
             </nav>
 
@@ -61,12 +73,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <Phone size={18} className="text-red-600" />
                 <span>{PHONE_NUMBER}</span>
               </a>
-              <Link 
-                to="/contact"
+              <a 
+                href="#booking"
+                onClick={(e) => handleNavClick(e, '#booking')}
                 className="bg-gray-900 text-white px-6 py-2.5 rounded-full font-medium hover:bg-gray-800 transition-all shadow-lg hover:shadow-gray-300/50 text-sm"
               >
                 Book Repair
-              </Link>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -83,20 +96,22 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {mobileMenuOpen && (
           <div className="md:hidden absolute top-20 left-0 w-full bg-white border-b border-gray-100 p-4 flex flex-col gap-4 shadow-xl h-screen">
             {navItems.map((item) => (
-              <Link 
+              <a 
                 key={item.name}
-                to={item.path}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className="text-left text-gray-800 font-medium py-2 px-4 hover:bg-gray-50 rounded-lg text-lg"
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
-             <Link 
-                to="/contact"
+             <a 
+                href="#booking"
+                onClick={(e) => handleNavClick(e, '#booking')}
                 className="bg-red-600 text-white text-center font-bold py-3 px-4 rounded-lg shadow-md mx-4 mt-4"
               >
                 Book a Repair
-             </Link>
+             </a>
              <a 
               href={`tel:${PHONE_NUMBER.replace(/\D/g,'')}`}
               className="flex items-center justify-center gap-3 text-gray-800 font-medium py-3 px-4 hover:bg-gray-50 rounded-lg border-t border-gray-100 mt-2"
@@ -114,35 +129,102 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl font-bold text-white mb-4">{COMPANY_NAME}</h2>
-              <p className="text-gray-400 text-sm mt-2">© 2024 {COMPANY_NAME}. All rights reserved.</p>
-              <p className="text-gray-500 text-xs mt-1 max-w-xs">{ADDRESS}</p>
-              <p className="text-gray-500 text-xs mt-4 max-w-md leading-relaxed">
-                {COMPANY_NAME} is an independent service provider for Apple and Android products. All Apple and Android product names, logos, and images are trademarks of Apple Inc and Android. We are not affiliated with or endorsed by Apple Inc and Android.
+      <footer className="bg-gray-900 text-white pt-16 pb-8 border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            {/* Col 1: Brand & Address */}
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-2">{COMPANY_NAME}</h2>
+                <p className="text-gray-400 text-sm">Expert repair services for all your premium devices.</p>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3 text-gray-400 text-sm group">
+                  <MapPin size={18} className="mt-1 flex-shrink-0 group-hover:text-red-500 transition-colors" />
+                  <p className="max-w-xs">{ADDRESS}</p>
+                </div>
+                <div className="flex items-center gap-3 text-gray-400 text-sm group">
+                  <Phone size={18} className="flex-shrink-0 group-hover:text-red-500 transition-colors" />
+                  <a href={`tel:${PHONE_NUMBER.replace(/\D/g,'')}`} className="hover:text-white transition-colors">{PHONE_NUMBER}</a>
+                </div>
+              </div>
+            </div>
+
+            {/* Col 2: Quick Links */}
+            <div>
+              <h3 className="text-lg font-bold text-white mb-6">Quick Links</h3>
+              <ul className="space-y-3 text-sm text-gray-400">
+                {navItems.map((item) => (
+                  <li key={item.name}>
+                    <a 
+                      href={item.href} 
+                      onClick={(e) => handleNavClick(e, item.href)} 
+                      className="hover:text-red-500 hover:pl-1 transition-all"
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 3: Services */}
+            <div>
+              <h3 className="text-lg font-bold text-white mb-6">Our Services</h3>
+              <ul className="space-y-3 text-sm text-gray-400">
+                <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-red-500 hover:pl-1 transition-all">iPhone Screen Repair</a></li>
+                <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-red-500 hover:pl-1 transition-all">Battery Replacement</a></li>
+                <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-red-500 hover:pl-1 transition-all">Water Damage Fix</a></li>
+                <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-red-500 hover:pl-1 transition-all">MacBook Repair</a></li>
+                <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-red-500 hover:pl-1 transition-all">iPad Service</a></li>
+              </ul>
+            </div>
+
+            {/* Col 4: Connect */}
+            <div>
+              <h3 className="text-lg font-bold text-white mb-6">Connect With Us</h3>
+              <div className="flex gap-4 mb-6">
+                <a 
+                  href="https://www.facebook.com/share/17ySmY8wrh/?mibextid=wwXIfr" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bg-gray-800 p-3 rounded-full hover:bg-red-600 transition-colors text-white group"
+                  aria-label="Facebook"
+                >
+                  <Facebook size={20} className="group-hover:scale-110 transition-transform" />
+                </a>
+                <a 
+                  href="https://wa.me/8660663776" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bg-gray-800 p-3 rounded-full hover:bg-green-600 transition-colors text-white group"
+                  aria-label="WhatsApp"
+                >
+                  <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
+                </a>
+                <a 
+                  href="https://www.facebook.com/share/17ySmY8wrh/?mibextid=wwXIfr" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bg-gray-800 p-3 rounded-full hover:bg-pink-600 transition-colors text-white group"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={20} className="group-hover:scale-110 transition-transform" />
+                </a>
+              </div>
+              <p className="text-gray-500 text-sm">
+                Follow us for updates and repair tips.
               </p>
             </div>
-            <div className="flex gap-8 text-gray-400 text-sm">
-              <Link to="/" className="hover:text-white transition-colors">Home</Link>
-              <Link to="/services" className="hover:text-white transition-colors">Services</Link>
-              <Link to="/portfolio" className="hover:text-white transition-colors">Portfolio</Link>
-              <Link to="/why-us" className="hover:text-white transition-colors">Why Us</Link>
-              <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
-            </div>
           </div>
-          
-          <div className="border-t border-gray-800 pt-8 mt-8">
-            <p className="text-xs text-gray-500 font-semibold mb-3 text-center md:text-left uppercase tracking-wider">Popular Searches</p>
-            <div className="flex flex-wrap justify-center md:justify-start gap-2">
-              {SEO_KEYWORDS.map((keyword, index) => (
-                <span key={index} className="text-xs text-gray-500 bg-gray-800 px-3 py-1 rounded-full hover:text-gray-300 transition-colors cursor-default">
-                  {keyword}
-                </span>
-              ))}
-            </div>
+
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <p className="text-gray-500 text-xs">
+              © {new Date().getFullYear()} {COMPANY_NAME}. All rights reserved.
+            </p>
+            <p className="text-gray-600 text-[10px] max-w-xl">
+              {COMPANY_NAME} is an independent service provider. All product names, logos, and brands are property of their respective owners. Apple, iPhone, and iPad are trademarks of Apple Inc. Android is a trademark of Google LLC.
+            </p>
           </div>
         </div>
       </footer>

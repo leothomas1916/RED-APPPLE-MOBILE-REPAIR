@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { 
   Clock, 
   ShieldCheck, 
@@ -61,12 +60,12 @@ export default function WhyUs() {
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold mb-2">Book Online & Save ₹500</h3>
                 <p className="text-gray-300 mb-6">Schedule your repair ahead of time to skip the line and get a discount.</p>
-                <Link 
-                  to="/contact"
+                <a 
+                  href="#contact"
                   className="inline-block bg-white text-gray-900 px-6 py-2 rounded-lg font-bold hover:bg-gray-100 transition-colors"
                 >
                   Book Now
-                </Link>
+                </a>
               </div>
               <div className="absolute right-0 bottom-0 opacity-10 transform translate-x-10 translate-y-10">
                 <Smartphone size={200} />
