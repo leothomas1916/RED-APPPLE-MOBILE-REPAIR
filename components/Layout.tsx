@@ -121,6 +121,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <h2 className="text-2xl font-bold text-white mb-4">{COMPANY_NAME}</h2>
               <p className="text-gray-400 text-sm mt-2">© 2024 {COMPANY_NAME}. All rights reserved.</p>
               <p className="text-gray-500 text-xs mt-1 max-w-xs">{ADDRESS}</p>
+              <p className="text-gray-500 text-xs mt-4 max-w-md leading-relaxed">
+                {COMPANY_NAME} is an independent service provider for Apple and Android products. All Apple and Android product names, logos, and images are trademarks of Apple Inc and Android. We are not affiliated with or endorsed by Apple Inc and Android.
+              </p>
             </div>
             <div className="flex gap-8 text-gray-400 text-sm">
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
