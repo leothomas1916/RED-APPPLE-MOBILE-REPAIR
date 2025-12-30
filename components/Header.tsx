@@ -20,6 +20,7 @@ export const Header: React.FC<HeaderProps> = ({
     { name: 'Services', id: 'services' },
     { name: 'Portfolio', id: 'portfolio' },
     { name: 'Why Us', id: 'why-us' },
+    { name: 'Booking', id: 'booking' },
     { name: 'Contact', id: 'contact' },
   ];
 
@@ -71,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({
               <span>{PHONE_NUMBER}</span>
             </a>
             <button 
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('booking')}
               className="bg-gray-900 text-white px-6 py-2.5 rounded-full font-medium hover:bg-gray-800 transition-all shadow-lg hover:shadow-gray-300/50 text-sm transform hover:-translate-y-0.5"
             >
               Book Repair
@@ -109,7 +110,7 @@ export const Header: React.FC<HeaderProps> = ({
           ))}
            <hr className="my-2 border-gray-100" />
            <button 
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('booking')}
               className="bg-red-600 text-white text-center font-bold py-3 px-4 rounded-xl shadow-md active:scale-95 transition-transform w-full"
             >
               Book a Repair

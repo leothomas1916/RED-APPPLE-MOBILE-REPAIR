@@ -25,6 +25,7 @@ import ChatWidget from './components/ChatWidget';
 import StatsChart from './components/StatsChart';
 import Header from './components/Header';
 import RevealOnScroll from './components/RevealOnScroll';
+import BookingSection from './components/BookingSection';
 
 // --- Constants & Helpers ---
 
@@ -193,10 +194,10 @@ export default function App() {
                   View Services <ArrowRight size={20} />
                 </button>
                 <button 
-                  onClick={() => scrollToSection('contact')}
+                  onClick={() => scrollToSection('booking')}
                   className="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full font-bold hover:border-gray-400 transition-all flex items-center justify-center"
                 >
-                  Get a Quote
+                  Book a Repair
                 </button>
               </div>
               
@@ -360,7 +361,7 @@ export default function App() {
                   <h3 className="text-2xl font-bold mb-2">Book Online & Save ₹500</h3>
                   <p className="text-gray-300 mb-6">Schedule your repair ahead of time to skip the line and get a discount.</p>
                   <button 
-                    onClick={() => scrollToSection('contact')}
+                    onClick={() => scrollToSection('booking')}
                     className="bg-white text-gray-900 px-6 py-2 rounded-lg font-bold hover:bg-gray-100 transition-colors"
                   >
                     Book Now
@@ -375,8 +376,21 @@ export default function App() {
         </RevealOnScroll>
       </section>
 
+      {/* Booking Section */}
+      <section id="booking" className="py-24 px-4 sm:px-6 lg:px-8 bg-white scroll-mt-24 border-t border-gray-100">
+        <RevealOnScroll>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Book Your Repair</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Select your issue and book an appointment in seconds. We'll get your device fixed today.
+            </p>
+          </div>
+          <BookingSection />
+        </RevealOnScroll>
+      </section>
+
       {/* FAQ Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <RevealOnScroll>
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
