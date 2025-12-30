@@ -25,8 +25,8 @@ export default function Home() {
         <RevealOnScroll>
           <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
             <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold border border-red-200">
-                <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold border border-purple-200">
+                <span className="w-2 h-2 bg-purple-600 rounded-full animate-pulse"></span>
                 #1 ranked in Bangalore with same-day repair for iPhone Screen, Back Glass and Battery replacement.
               </div>
               <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900 tracking-tight">
@@ -36,7 +36,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 max-w-lg leading-relaxed">
-                Expert repair services for iPhones, Androids, and Laptops. Fast turnaround, OEM quality parts, and a 90-day warranty on all fixes.
+                Precision diagnostics and expert restoration for smartphones and laptops. We utilize premium OEM-grade components for rapid turnaround, secured by our comprehensive 90-day warranty.
               </p>
               
               {/* Quick Actions */}
@@ -63,7 +63,7 @@ export default function Home() {
                 </div>
                 <div className="text-sm">
                   <div className="flex text-yellow-400 mb-1">★★★★★</div>
-                  <p className="text-gray-500"><span className="font-bold text-gray-900">1,000+</span> devices fixed</p>
+                  <p className="text-gray-500"><span className="font-bold text-gray-900">6500+</span> devices fixed</p>
                 </div>
               </div>
             </div>

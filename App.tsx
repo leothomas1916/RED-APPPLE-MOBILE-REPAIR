@@ -26,6 +26,7 @@ import StatsChart from './components/StatsChart';
 import Header from './components/Header';
 import RevealOnScroll from './components/RevealOnScroll';
 import BookingSection from './components/BookingSection';
+import DeviceModels from './components/DeviceModels';
 
 // --- Constants & Helpers ---
 
@@ -50,17 +51,6 @@ const FAQS = [
     question: "Do I need to make an appointment?",
     answer: "Walk-ins are always welcome! However, we recommend booking an appointment online to ensure the fastest service and to guarantee that the specific part for your device is reserved for you."
   }
-];
-
-const SUPPORTED_DEVICES = [
-  { name: 'Apple iPhone', Icon: AppleLogo },
-  { name: 'Android', Icon: AndroidLogo },
-  { name: 'iPad', Icon: Tablet },
-  { name: 'MacBook', Icon: Laptop },
-  { name: 'iWatch', Icon: IWatchIcon },
-  { name: 'Samsung', Icon: SamsungLogo },
-  { name: 'Google Pixel', Icon: GoogleLogo },
-  { name: 'Tablets', Icon: Tablet },
 ];
 
 const ServiceCard: React.FC<{ 
@@ -173,8 +163,8 @@ export default function App() {
         <RevealOnScroll>
           <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold">
-                <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold border border-purple-200">
+                <span className="w-2 h-2 bg-purple-600 rounded-full animate-pulse"></span>
                 #1 ranked in Bangalore with same-day repair for iPhone Screen, Back Glass and Battery replacement.
               </div>
               <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900">
@@ -184,7 +174,7 @@ export default function App() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 max-w-lg leading-relaxed">
-                Expert repair services for iPhones, Androids, and Laptops. fast turnaround, OEM quality parts, and a 90-day warranty on all fixes.
+                Precision diagnostics and expert restoration for smartphones and laptops. We utilize premium OEM-grade components for rapid turnaround, secured by our comprehensive 90-day warranty.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
@@ -209,7 +199,7 @@ export default function App() {
                 </div>
                 <div className="text-sm">
                   <div className="flex text-yellow-400 mb-1">★★★★★</div>
-                  <p className="text-gray-500"><span className="font-bold text-gray-900">1,000+</span> devices fixed</p>
+                  <p className="text-gray-500"><span className="font-bold text-gray-900">6500+</span> devices fixed</p>
                 </div>
               </div>
             </div>
@@ -242,24 +232,15 @@ export default function App() {
       </section>
 
       {/* Supported Models Section */}
-      <section className="py-16 bg-white border-b border-gray-100">
+      <section className="py-20 bg-gray-50 border-b border-gray-100">
         <RevealOnScroll>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
-                <h2 className="text-2xl font-bold text-gray-900">Devices We Repair</h2>
-                <p className="text-gray-500 text-sm mt-1">Specialized service for all major brands</p>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Models We Repair</h2>
+                <p className="text-gray-600 text-lg">Select your device category to see detailed repair services</p>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {SUPPORTED_DEVICES.map((device, index) => (
-                  <div key={index} className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-red-100 group cursor-default">
-                      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:bg-red-50 transition-colors">
-                        <device.Icon className="text-gray-400 group-hover:text-red-600 transition-colors" size={32} />
-                      </div>
-                      <span className="font-bold text-gray-800 text-sm md:text-base">{device.name}</span>
-                  </div>
-                ))}
-            </div>
+            <DeviceModels />
           </div>
         </RevealOnScroll>
       </section>
