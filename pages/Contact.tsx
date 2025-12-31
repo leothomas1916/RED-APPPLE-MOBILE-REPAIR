@@ -114,17 +114,14 @@ export default function Contact() {
                   </div>
                 </div>
                 
-                <div className="md:w-3/5 bg-gray-100 min-h-[400px]">
+                <div className="w-full md:w-3/5 h-[300px] md:h-auto min-h-[300px] relative bg-gray-100">
                    <iframe 
                      title="Red Apple Mobile Repair Location"
                      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3887.953360798727!2d77.6222756!3d12.9748349!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17abf5978f99%3A0xf9ade41a529ebc08!2sRED%20APPLE%20MOBILE%20REPAIR!5e0!3m2!1sen!2sin!4v1767109446646!5m2!1sen!2sin" 
-                     width="100%" 
-                     height="100%" 
-                     style={{border:0}} 
-                     allowFullScreen 
+                     className="absolute inset-0 w-full h-full border-0"
+                     allowFullScreen
                      loading="lazy" 
                      referrerPolicy="no-referrer-when-downgrade"
-                     className="w-full h-full object-cover grayscale-0 hover:grayscale-0 transition-all duration-500"
                    ></iframe>
                 </div>
               </div>
