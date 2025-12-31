@@ -122,10 +122,10 @@ const BookingSection: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="rounded-3xl shadow-2xl border border-gray-100 flex flex-col lg:flex-row bg-white">
+      <div className="rounded-3xl shadow-2xl border border-gray-100 flex flex-col lg:flex-row bg-white overflow-hidden">
         
         {/* Left Side: Issue Selection */}
-        <div className="lg:w-1/2 p-8 md:p-12 bg-gray-50 rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none">
+        <div className="lg:w-1/2 p-8 md:p-12 bg-gray-50">
           <h3 className="text-2xl font-bold text-gray-900 mb-2">1. What's the problem?</h3>
           <p className="text-gray-500 mb-8">Hover over an icon to see details.</p>
           
@@ -160,7 +160,7 @@ const BookingSection: React.FC = () => {
         </div>
 
         {/* Right Side: Details Form */}
-        <div className="lg:w-1/2 p-8 md:p-12 bg-white relative rounded-b-3xl lg:rounded-r-3xl lg:rounded-bl-none overflow-hidden">
+        <div className="lg:w-1/2 p-8 md:p-12 bg-white relative">
           <div className="absolute top-0 right-0 w-32 h-32 bg-red-100 rounded-bl-full opacity-50 pointer-events-none"></div>
           
           <h3 className="text-2xl font-bold text-gray-900 mb-2">2. Your Details</h3>
@@ -175,84 +175,84 @@ const BookingSection: React.FC = () => {
                 <p className="text-gray-600 mb-6">We have received your request. Our technician will call you shortly to confirm the appointment.</p>
                 <button 
                     onClick={() => setStatus('idle')}
-                    className="text-red-600 font-semibold hover:text-red-700"
+                    className="text-red-600 font-semibold hover:text-red-700 underline"
                 >
                     Book another repair
                 </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-                <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
-                <div className="relative">
-                    <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                    <input
-                    required
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="John Doe"
-                    disabled={status === 'submitting'}
-                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all disabled:opacity-50"
-                    />
-                </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                    <div className="relative">
-                    <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                    <input
-                        required
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        placeholder="98765 43210"
-                        disabled={status === 'submitting'}
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all disabled:opacity-50"
-                    />
-                    </div>
-                </div>
-                
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Device Model</label>
-                    <div className="relative">
-                    <Smartphone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                    <input
-                        required
-                        type="text"
-                        name="model"
-                        value={formData.model}
-                        onChange={handleInputChange}
-                        placeholder="e.g. iPhone 13 Pro"
-                        disabled={status === 'submitting'}
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all disabled:opacity-50"
-                    />
-                    </div>
-                </div>
+            <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+                <div className="group">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2 ml-1">Your Name</label>
+                  <div className="relative transition-all duration-300 focus-within:transform focus-within:-translate-y-1">
+                      <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-red-500 transition-colors" size={20} />
+                      <input
+                      required
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="John Doe"
+                      disabled={status === 'submitting'}
+                      className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:bg-white focus:border-red-500 focus:ring-4 focus:ring-red-500/10 transition-all disabled:opacity-50 text-gray-900 placeholder-gray-400 font-medium"
+                      />
+                  </div>
                 </div>
 
-                <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
-                <div className="relative">
-                    <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                    <input
-                    type="date"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleInputChange}
-                    disabled={status === 'submitting'}
-                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all text-gray-600 disabled:opacity-50"
-                    />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="group">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2 ml-1">Phone Number</label>
+                      <div className="relative transition-all duration-300 focus-within:transform focus-within:-translate-y-1">
+                      <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-red-500 transition-colors" size={20} />
+                      <input
+                          required
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          placeholder="98765 43210"
+                          disabled={status === 'submitting'}
+                          className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:bg-white focus:border-red-500 focus:ring-4 focus:ring-red-500/10 transition-all disabled:opacity-50 text-gray-900 placeholder-gray-400 font-medium"
+                      />
+                      </div>
+                  </div>
+                  
+                  <div className="group">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2 ml-1">Device Model</label>
+                      <div className="relative transition-all duration-300 focus-within:transform focus-within:-translate-y-1">
+                      <Smartphone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-red-500 transition-colors" size={20} />
+                      <input
+                          required
+                          type="text"
+                          name="model"
+                          value={formData.model}
+                          onChange={handleInputChange}
+                          placeholder="e.g. iPhone 13 Pro"
+                          disabled={status === 'submitting'}
+                          className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:bg-white focus:border-red-500 focus:ring-4 focus:ring-red-500/10 transition-all disabled:opacity-50 text-gray-900 placeholder-gray-400 font-medium"
+                      />
+                      </div>
+                  </div>
                 </div>
+
+                <div className="group">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2 ml-1">Preferred Date</label>
+                  <div className="relative transition-all duration-300 focus-within:transform focus-within:-translate-y-1">
+                      <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-red-500 transition-colors" size={20} />
+                      <input
+                      type="date"
+                      name="date"
+                      value={formData.date}
+                      onChange={handleInputChange}
+                      disabled={status === 'submitting'}
+                      className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:bg-white focus:border-red-500 focus:ring-4 focus:ring-red-500/10 transition-all text-gray-900 disabled:opacity-50 font-medium"
+                      />
+                  </div>
                 </div>
 
                 {status === 'error' && (
-                    <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg text-sm">
-                        <AlertCircle size={16} />
+                    <div className="flex items-center gap-3 text-red-700 bg-red-50 p-4 rounded-2xl text-sm border border-red-100 animate-pulse">
+                        <AlertCircle size={20} className="flex-shrink-0" />
                         <span>Something went wrong. Please try again or call us directly.</span>
                     </div>
                 )}
@@ -260,19 +260,24 @@ const BookingSection: React.FC = () => {
                 <button
                 type="submit"
                 disabled={status === 'submitting'}
-                className="w-full bg-red-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-red-700 hover:shadow-red-200 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-red-200 hover:shadow-red-300 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 mt-6 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
                 >
                 {status === 'submitting' ? (
                     <>
-                        <Loader2 size={20} className="animate-spin" />
-                        Processing...
+                        <Loader2 size={24} className="animate-spin" />
+                        <span>Processing...</span>
                     </>
                 ) : (
                     <>
-                        Book Appointment <ArrowRight size={20} />
+                        <span>Book Appointment</span>
+                        <ArrowRight size={20} />
                     </>
                 )}
                 </button>
+                
+                <p className="text-center text-xs text-gray-400 mt-4">
+                  By booking, you agree to our service terms. No payment required now.
+                </p>
             </form>
           )}
         </div>

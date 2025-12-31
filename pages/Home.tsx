@@ -91,9 +91,9 @@ export default function Home() {
               {/* Main Hero Image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                   <img 
-                    src="https://images.unsplash.com/photo-1596742578443-7682e525c489?auto=format&fit=crop&q=80&w=1000" 
-                    alt="Shattered mobile phone screen illustrating damage we repair" 
-                    className="w-full object-cover h-[550px] transform hover:scale-105 transition-transform duration-700"
+                    src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=2070" 
+                    alt="Professional technician repairing mobile device with precision tools" 
+                    className="w-full object-cover h-[400px] lg:h-[600px] transform hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   
@@ -175,9 +175,9 @@ export default function Home() {
                           </div>
                           
                           <BeforeAfterSlider 
-                            beforeImage="https://images.unsplash.com/photo-1588698942203-7e44ec3c2202?auto=format&fit=crop&q=80&w=800"
-                            afterImage="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&q=80&w=800"
-                            alt="iPhone Screen"
+                            beforeImage="https://images.unsplash.com/photo-1598327105666-5b89351aff23?auto=format&fit=crop&q=80&w=1000"
+                            afterImage="https://images.unsplash.com/photo-1512054502232-10a0a035d672?auto=format&fit=crop&q=80&w=1000"
+                            alt="iPhone Screen Repair"
                           />
                           <p className="text-center text-sm text-gray-500 mt-4 flex items-center justify-center gap-2">
                               <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
