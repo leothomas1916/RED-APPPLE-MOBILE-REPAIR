@@ -1,10 +1,13 @@
 export enum ServiceType {
-  SCREEN_REPLACEMENT = 'Screen Replacement',
-  BATTERY_REPLACEMENT = 'Battery Replacement',
-  BACK_GLASS = 'Back Glass Replacement',
-  WATER_DAMAGE = 'Water Damage Repair',
-  DIAGNOSTIC = 'Free Diagnostics',
-  SOFTWARE = 'Software Issue'
+  MOTHERBOARD_REPAIR = 'Level 4 Motherboard Repair',
+  CURVED_DISPLAY = 'Curved & Edge Display Repair',
+  LASER_BACK_GLASS = 'Laser Back Glass Replacement',
+  SCREEN_REPLACEMENT = 'OEM Screen & Display Repair',
+  BATTERY_REPLACEMENT = 'Battery & Charging Service',
+  APPLE_WATCH_IPAD = 'Apple Watch & iPad Repair',
+  DATA_RECOVERY = 'Dead Phone Data Recovery',
+  DIAGNOSTIC = 'Free Device Diagnostics',
+  SOFTWARE = 'Software & System Recovery'
 }
 
 export enum DeviceType {
@@ -12,15 +15,22 @@ export enum DeviceType {
   ANDROID = 'Android',
   IPAD = 'iPad',
   MACBOOK = 'MacBook',
-  LAPTOP = 'Windows Laptop'
+  LAPTOP = 'Windows Laptop',
+  APPLE_WATCH = 'Apple Watch'
 }
 
 export interface RepairService {
   id: string;
   title: string;
   description: string;
+  category: 'motherboard' | 'display' | 'glass' | 'battery' | 'apple-watch' | 'data' | 'diagnostic';
   iconName: string;
   popular: boolean;
+  technicalTag: string;
+  turnaroundTime: string;
+  keyFeatures: string[];
+  priceEstimate?: string;
+  warranty: string;
 }
 
 export interface Review {

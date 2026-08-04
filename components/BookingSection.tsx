@@ -19,52 +19,55 @@ import {
 
 const REPAIR_ISSUES = [
   { 
+    id: 'backglass', 
+    label: 'TBK Laser Back Glass', 
+    icon: Monitor, 
+    badge: '🔥 Maps Special',
+    description: 'Non-invasive TBK laser removal of shattered iPhone back glass without opening the phone.' 
+  },
+  { 
     id: 'screen', 
-    label: 'Screen Replacement', 
+    label: 'OEM Display & True Tone', 
     icon: Smartphone, 
-    description: 'Fix cracked glass, dead pixels, or touch response issues.' 
+    badge: '⭐ Top Rated',
+    description: 'Cleanroom Vacuum OCA display lamination with True Tone serial data transfer.' 
   },
   { 
     id: 'battery', 
-    label: 'Battery Issue', 
+    label: 'OEM Battery Swap', 
     icon: Battery, 
-    description: 'For devices draining fast, not charging, or shutting down.' 
+    badge: '⚡ 20 Mins',
+    description: 'High-density OEM battery replacement with BMS health programming and zero warnings.' 
   },
   { 
-    id: 'water', 
-    label: 'Water Damage', 
-    icon: Droplets, 
-    description: 'Chemical cleaning for liquid contact and corrosion removal.' 
+    id: 'motherboard', 
+    label: 'Motherboard / Water', 
+    icon: Cpu, 
+    description: 'Level 4 chip micro-soldering, audio IC, and liquid corrosion wash.' 
   },
   { 
-    id: 'backglass', 
-    label: 'Back Glass', 
-    icon: Monitor, 
-    description: 'Laser removal of shattered back glass panels.' 
+    id: 'curved', 
+    label: 'Curved AMOLED Glass', 
+    icon: Smartphone, 
+    description: 'Curved edge glass separation for Samsung Galaxy & flagship phones.' 
   },
   { 
     id: 'camera', 
-    label: 'Camera Lens', 
+    label: 'Camera / Lens', 
     icon: Camera, 
-    description: 'Repair blurry photos, broken lenses, or focus issues.' 
+    description: 'Repair blurry photos, cracked camera glass lenses, or focus issues.' 
   },
   { 
     id: 'speaker', 
     label: 'Speaker / Mic', 
     icon: Speaker, 
-    description: 'Fix low volume, distorted sound, or microphone failure.' 
-  },
-  { 
-    id: 'network', 
-    label: 'Signal / WiFi', 
-    icon: Wifi, 
-    description: 'Solve weak signal, WiFi dropping, or Bluetooth connectivity.' 
+    description: 'Fix low volume, distorted audio, or ear speaker failure.' 
   },
   { 
     id: 'other', 
-    label: 'Other Issue', 
-    icon: Cpu, 
-    description: 'Motherboard diagnostics, button repair, or unknown errors.' 
+    label: 'Other Diagnostics', 
+    icon: Droplets, 
+    description: 'Free 25-point hardware inspection and battery health diagnostic.' 
   },
 ];
 
@@ -141,6 +144,11 @@ const BookingSection: React.FC = () => {
                     : 'border-white bg-white text-gray-600 hover:border-red-100 hover:shadow-sm'
                 }`}
               >
+                {issue.badge && (
+                  <span className="absolute top-2 right-2 bg-red-100 text-red-700 font-extrabold text-[9px] px-1.5 py-0.5 rounded-md border border-red-200">
+                    {issue.badge}
+                  </span>
+                )}
                 <issue.icon 
                   size={28} 
                   className={`mb-3 ${selectedIssue === issue.id ? 'text-red-600' : 'text-gray-400'}`} 

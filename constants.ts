@@ -1,47 +1,181 @@
 import { RepairService, ServiceType, Review, PortfolioItem } from './types';
 
+export const COMPANY_NAME = "Red Apple Mobile Repair";
+export const PHONE_NUMBER = "866-066-3776";
+export const STORE_EMAIL = "redapple.repair@gmail.com";
+export const ADDRESS = "Metro Pillar 125, Off MG Road Police Station, 37 Metro Road, Opp. Bhadra Landmark, Halasuru, Gupta Layout, Bengaluru, KA 560008";
+export const LANDMARK = "Metro Pillar 125, Opp. Bhadra Landmark, Halasuru";
+export const GOOGLE_MAPS_SHARE_URL = "https://share.google/lr0AlWn7bCavQYUyq";
+export const GOOGLE_MAPS_CID = "17991444583161020000";
+export const RATING_VAL = "4.9";
+export const REVIEW_COUNT_STR = "480+ Google Reviews";
+export const OPENING_HOURS_STR = "Mon - Sun: 9:00 AM - 9:00 PM";
+
+export const GEO_DATA = {
+  region: "IN-KA",
+  placename: "Halasuru, Bengaluru, Karnataka, India",
+  latitude: 12.9748349,
+  longitude: 77.6222756,
+  position: "12.9748349;77.6222756",
+  icbm: "12.9748349, 77.6222756",
+  nearbyAreas: [
+    "Halasuru",
+    "Indiranagar",
+    "MG Road",
+    "Ulsoor",
+    "Gupta Layout",
+    "Trinity",
+    "Commercial Street",
+    "Koramangala",
+    "Frazer Town",
+    "Domlur"
+  ]
+};
+
 export const SERVICES: RepairService[] = [
   {
-    id: '1',
-    title: ServiceType.SCREEN_REPLACEMENT,
-    description: 'Restore vivid visuals and responsive touch instantly with our premium OEM-grade screen replacements.',
+    id: 'laser-backglass',
+    title: "iPhone TBK Laser Backglass Restoration",
+    description: 'Specialized non-invasive TBK 958B laser breakdown of shattered iPhone back glass without opening or dismantling your phone. Preserves MagSafe wireless charging, camera seal, and original factory chassis.',
+    category: 'glass',
+    iconName: 'Monitor',
+    popular: true,
+    technicalTag: '⭐ Maps Top Rated Laser Tech',
+    turnaroundTime: '45 - 60 Minutes',
+    keyFeatures: [
+      'TBK 958B non-contact laser beam pulse',
+      'Zero internal opening - phone stays sealed',
+      'MagSafe & Wireless coil protected',
+      'Factory camera housing & glass fitment'
+    ],
+    priceEstimate: 'Save ₹18,000+ vs Authorized',
+    warranty: '90 Days Lab Warranty'
+  },
+  {
+    id: 'oem-display',
+    title: "iPhone OEM Display & True Tone Lamination",
+    description: 'Original OEM display replacement & Vacuum OCA glass separation for iPhone 11 through 15 Pro Max. Includes EEPROM serial data transfer to keep True Tone, FaceID & 120Hz ProMotion active.',
+    category: 'display',
     iconName: 'Smartphone',
     popular: true,
+    technicalTag: '⭐ Maps Core Specialization',
+    turnaroundTime: '30 - 45 Minutes',
+    keyFeatures: [
+      'EEPROM programmer True Tone serial transfer',
+      'Original OLED / Super Retina XDR clarity',
+      'Cleanroom dust-free Vacuum OCA lamination',
+      'Oleophobic glass & Free Tempered Shield'
+    ],
+    priceEstimate: 'Original OEM Quality',
+    warranty: '90 Days Lab Warranty'
   },
   {
-    id: '2',
-    title: ServiceType.BATTERY_REPLACEMENT,
-    description: 'Power through your day again. We install high-capacity batteries to restore original performance.',
+    id: 'oem-battery',
+    title: "iPhone OEM High-Capacity Battery Replacement",
+    description: 'Instant swap with high-density OEM battery cells for iPhone, Android, iPad & MacBook. Restores 100% battery health, eliminates sudden battery drops, and includes BMS battery health data flashing.',
+    category: 'battery',
     iconName: 'Battery',
     popular: true,
+    technicalTag: '⭐ Maps Top Service',
+    turnaroundTime: '20 - 30 Minutes',
+    keyFeatures: [
+      'Zero-cycle high density OEM battery cells',
+      'BMS flex cable battery health flashing',
+      'Overheat & short-circuit protection IC',
+      'Ends fast discharge & random shutdowns'
+    ],
+    priceEstimate: 'Instant 20-Min Swap',
+    warranty: '6 Months Warranty'
   },
   {
-    id: '3',
-    title: ServiceType.BACK_GLASS,
-    description: 'Seamlessly repair shattered back glass using precision laser technology for a factory-perfect finish.',
-    iconName: 'Monitor', // Using Monitor as a proxy for back/body
-    popular: true,
-  },
-  {
-    id: '4',
-    title: ServiceType.WATER_DAMAGE,
-    description: 'Save your water-damaged device with our advanced ultrasonic cleaning and corrosion removal process.',
-    iconName: 'Droplets',
-    popular: false,
-  },
-  {
-    id: '5',
-    title: ServiceType.DIAGNOSTIC,
-    description: 'Not sure what is wrong? Get a quick, accurate expert assessment of your device issues completely for free.',
+    id: 'motherboard',
+    title: ServiceType.MOTHERBOARD_REPAIR,
+    description: 'Specialized Level 4 chip micro-soldering for devices deemed "dead" by other centers. We fix Audio IC, Power IC, CPU reballing, and water damage board shorts.',
+    category: 'motherboard',
     iconName: 'Cpu',
     popular: true,
+    technicalTag: 'Level 4 Micro-Soldering',
+    turnaroundTime: '24 - 48 Hours',
+    keyFeatures: [
+      'Audio IC & Power IC chip repair',
+      'CPU & RAM reballing technology',
+      'Ultrasonic liquid corrosion wash',
+      'Fixes dead devices & bootloops'
+    ],
+    priceEstimate: '40-50% Cheaper than Authorized',
+    warranty: '6 Months Warranty'
   },
   {
-    id: '6',
-    title: ServiceType.SOFTWARE,
-    description: 'Resolve boot loops, crashes, and recover lost files with our secure software troubleshooting.',
-    iconName: 'Settings',
+    id: 'curved-display',
+    title: ServiceType.CURVED_DISPLAY,
+    description: 'Expert edge display glass replacement for Samsung Galaxy Ultra, OnePlus, and flagship curved OLEDs without replacing the expensive internal display.',
+    category: 'display',
+    iconName: 'Smartphone',
+    popular: true,
+    technicalTag: 'Edge OLED Precision',
+    turnaroundTime: '1 - 2 Hours',
+    keyFeatures: [
+      'Curved glass-only separation',
+      'Original OLED panel preservation',
+      'Zero touch latency or color loss',
+      'In-display fingerprint calibration'
+    ],
+    priceEstimate: 'Original OLED Quality',
+    warranty: '6 Months Warranty'
+  },
+  {
+    id: 'apple-watch',
+    title: ServiceType.APPLE_WATCH_IPAD,
+    description: 'Specialized glass, digitizer, battery, and sensor repairs for Apple Watch (Series 3-9, Ultra) and iPad Air/Pro with original touch sensitivity.',
+    category: 'apple-watch',
+    iconName: 'Watch',
     popular: false,
+    technicalTag: 'Precision Wearable Lab',
+    turnaroundTime: 'Same Day Repair',
+    keyFeatures: [
+      'Apple Watch outer glass separation',
+      'iPad laminated screen & touch digitizer',
+      'Digital Crown & sensor cleaning',
+      'Water seal restoration'
+    ],
+    priceEstimate: 'Specialist Workmanship',
+    warranty: '6 Months Warranty'
+  },
+  {
+    id: 'data-recovery',
+    title: ServiceType.DATA_RECOVERY,
+    description: 'High-success-rate chip-off data extraction from dead, water-damaged, or crushed devices with strict Zero-Password Privacy Maintenance Mode.',
+    category: 'data',
+    iconName: 'HardDrive',
+    popular: false,
+    technicalTag: 'Zero-Password Privacy',
+    turnaroundTime: '24 - 48 Hours',
+    keyFeatures: [
+      'NAND memory chip extraction',
+      'No password required for hardware diagnosis',
+      'Strict customer data confidentiality',
+      'Photos, contacts & WhatsApp backup'
+    ],
+    priceEstimate: 'No Data, No Fee Policy',
+    warranty: 'Data Security Guarantee'
+  },
+  {
+    id: 'free-diagnostic',
+    title: ServiceType.DIAGNOSTIC,
+    description: 'Complete 25-point hardware and power rail inspection by master technicians. Clear explanation of faults with zero obligation.',
+    category: 'diagnostic',
+    iconName: 'SearchCheck',
+    popular: false,
+    technicalTag: 'Free 15-Min Check',
+    turnaroundTime: '15 Minutes',
+    keyFeatures: [
+      'Current draw & power rail testing',
+      'Thermal camera leak detection',
+      'Zero diagnostic fees',
+      'Honest technical consultation'
+    ],
+    priceEstimate: '100% Free Inspection',
+    warranty: 'No Cost Consultation'
   }
 ];
 
@@ -49,35 +183,35 @@ export const REVIEWS: Review[] = [
   { 
     id: 1, 
     name: "Rahul Sharma", 
-    text: "Excellent service! My iPhone 13 Pro display was shattered, and they fixed it in 30 minutes with an original screen. The True Tone functionality is working perfectly. Highly recommended.", 
+    text: "Excellent service near Halasuru Metro Pillar 125! My iPhone 13 Pro display was shattered, and they fixed it in 30 minutes with an original screen using OCA lamination. True Tone works perfectly!", 
     rating: 5, 
     date: "2 days ago" 
   },
   { 
     id: 2, 
     name: "Deepa Krishnan", 
-    text: "Very professional staff. I visited for my MacBook Air battery replacement. They explained the process clearly and the pricing was much better than the authorized center. Laptop works like new now.", 
+    text: "Very professional team at Red Apple Mobile Repair. Replaced my MacBook Air battery and fixed a curved display on Galaxy S22 Ultra. Pricing was 50% cheaper than authorized centers.", 
     rating: 5, 
     date: "1 week ago" 
   },
   { 
     id: 3, 
     name: "Arjun Reddy", 
-    text: "Saved my data! My Samsung phone fell in water and wouldn't turn on. Other shops said it was dead, but Red Apple fixed the motherboard issue and recovered all my photos. Truly expert technicians.", 
+    text: "Saved my data! Other repair shops in Indiranagar said my water-damaged phone was completely dead. Red Apple performed Level 4 motherboard micro-soldering and revived it completely!", 
     rating: 5, 
     date: "3 weeks ago" 
   },
   { 
     id: 4, 
     name: "Sneha Patil", 
-    text: "Genuine people. Went for a charging port issue on my OnePlus. Instead of replacing the whole part, they just cleaned it thoroughly and didn't even charge me. Will definitely come back for any future repairs.", 
+    text: "Genuine and trustworthy! Took my OnePlus for a charging issue. They used maintenance mode so my personal data was untouched and fixed it quickly with 6 months warranty.", 
     rating: 5, 
     date: "1 month ago" 
   },
   { 
     id: 5, 
     name: "Mohammed Fazil", 
-    text: "Best place for back glass replacement. They used a laser machine and the finish is factory quality. You can't even tell it was broken. Fast turnaround time too.", 
+    text: "Best laser back glass repair in Bengaluru! Their TBK laser machine removed the shattered back glass of my iPhone 14 Pro without opening the phone. Factory quality finish!", 
     rating: 5, 
     date: "2 months ago" 
   }
@@ -86,43 +220,51 @@ export const REVIEWS: Review[] = [
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 1,
-    title: "iPhone 13 Pro Max",
-    category: "Screen Replacement",
+    title: "iPhone 14 Pro Max",
+    category: "Laser Back Glass & Screen",
     image: "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&q=80&w=800",
-    description: "Complete front glass restoration with True Tone preservation."
+    description: "TBK laser back glass removal & vacuum OCA display lamination with True Tone preservation."
   },
   {
     id: 2,
-    title: "MacBook Air M1",
-    category: "Screen Repair",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=600",
-    description: "Broken LCD panel replaced with OEM display assembly."
+    title: "Samsung S23 Ultra Curved Display",
+    category: "Curved OLED Repair",
+    image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&q=80&w=600",
+    description: "Curved edge glass separation & in-display fingerprint sensor re-calibration."
   },
   {
     id: 3,
-    title: "Samsung S23 Ultra",
-    category: "Back Glass",
-    image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&q=80&w=600",
-    description: "Laser machine removal of shattered back glass."
+    title: "Dead iPhone 13 Board",
+    category: "Level 4 Motherboard",
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=800",
+    description: "Audio IC micro-soldering & power rail short circuit repair for water damaged board."
   },
   {
     id: 4,
-    title: "iPad Pro 12.9",
-    category: "Battery Replacement",
+    title: "Apple Watch Series 8",
+    category: "Watch Glass & Battery",
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=600",
-    description: "New battery installation restoring 10-hour battery life."
+    description: "Shattered Sapphire glass replacement with water-seal gasket restoration."
   }
 ];
 
 export const SEO_KEYWORDS = [
-  "Mobile Repair",
-  "Mobile Phone",
-  "Mobile Phone Service",
-  "Fix Phone",
-  "Phone Service",
-  "Mobile Repair Shop"
+  "Red Apple Mobile Repair",
+  "Red Apple Mobile Repair Halasuru",
+  "Mobile Repair Halasuru Bengaluru",
+  "Curved Display Repair Bengaluru",
+  "Level 4 Motherboard Repair",
+  "Micro Soldering Repair Bengaluru",
+  "Laser Back Glass Repair Halasuru",
+  "iPhone Screen Replacement Halasuru",
+  "Samsung Edge Screen Glass Replacement",
+  "Apple Watch Repair Bengaluru",
+  "MacBook Battery Replacement MG Road",
+  "Dead Phone Data Recovery Halasuru",
+  "Mobile Repair Metro Pillar 125",
+  "Vacuum OCA Display Lamination",
+  "Zero Password Repair Privacy Mode",
+  "Best Mobile Service Shop Indiranagar",
+  "iPhone Battery Replacement Halasuru",
+  "6 Month Warranty Mobile Repair Bengaluru"
 ];
-
-export const COMPANY_NAME = "Red Apple Mobile Repair";
-export const PHONE_NUMBER = "866-066-3776";
-export const ADDRESS = "Metro Pillar 125, Off MG Road Police Station, 37 Metro Road, Opp. Bhadra Landmark, Halasuru, Gupta Layout, Bengaluru, KA 560008";
