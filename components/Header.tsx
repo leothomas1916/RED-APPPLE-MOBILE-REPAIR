@@ -1,8 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Phone, Menu, X, MapPin, Star, ShieldCheck, Clock } from 'lucide-react';
-import { PHONE_NUMBER, COMPANY_NAME, LANDMARK, RATING_VAL, REVIEW_COUNT_STR } from '../constants';
-import RedAppleLogo from './RedAppleLogo';
+import { Phone, Menu, X, MapPin, ShieldCheck, Clock, Instagram, ExternalLink } from 'lucide-react';
+import { PHONE_NUMBER, COMPANY_NAME, LANDMARK, GOOGLE_MAPS_SHARE_URL, INSTAGRAM_URL, HASHTAG_PHONE, WHATSAPP_URL } from '../constants';
 
 interface HeaderProps {
   mobileMenuOpen: boolean;
@@ -25,35 +24,48 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="fixed top-0 w-full z-40 transition-all duration-300">
       {/* Top Announcement Bar */}
-      <div className="bg-gray-950 text-gray-200 text-xs py-2 px-4 border-b border-gray-800 hidden sm:block">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-          <div className="flex items-center gap-4 text-[12px]">
-            <span className="flex items-center gap-1.5 font-medium text-gray-300">
+      <div className="bg-gray-950 text-gray-200 text-xs border-b border-gray-800 hidden sm:block">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-col sm:flex-row justify-between items-center gap-2">
+          <div className="flex items-center gap-3 sm:gap-4 text-[12px] flex-wrap">
+            <a 
+              href={GOOGLE_MAPS_SHARE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 font-medium text-gray-300 hover:text-red-400 transition-colors"
+              title="Open location on Google Maps"
+            >
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <MapPin size={13} className="text-red-500" />
-              {LANDMARK}
-            </span>
-            <span className="text-gray-600">|</span>
-            <span className="flex items-center gap-1 text-amber-400 font-bold">
-              <Star size={13} fill="#FBBF24" color="#FBBF24" />
-              {RATING_VAL} <span className="text-gray-400 font-normal">({REVIEW_COUNT_STR})</span>
-            </span>
-            <span className="text-gray-600">|</span>
-            <span className="flex items-center gap-1 text-emerald-400 font-medium">
-              <ShieldCheck size={13} />
-              Zero-Password Data Privacy Mode
+              <MapPin size={13} className="text-red-500 shrink-0" />
+              <span>{LANDMARK}</span>
+              <ExternalLink size={10} className="text-gray-400 shrink-0" />
+            </a>
+            <span className="text-gray-700 hidden md:inline">|</span>
+            <span className="flex items-center gap-1.5 text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded-md">
+              <ShieldCheck size={13} className="shrink-0 text-emerald-400" />
+              <span>Zero-Password Data Privacy Mode</span>
             </span>
           </div>
-          <div className="flex items-center gap-4 text-[12px]">
+          <div className="flex items-center gap-3 text-[12px] shrink-0">
+            <a 
+              href={INSTAGRAM_URL} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-300 hover:text-pink-400 transition-colors flex items-center gap-1 font-semibold"
+              title="Follow us on Instagram"
+            >
+              <Instagram size={13} className="text-pink-500 shrink-0" />
+              <span className="hidden md:inline">@red_apple_mobile_repair</span>
+            </a>
+            <span className="text-gray-700 hidden md:inline">|</span>
             <span className="flex items-center gap-1 text-gray-400">
-              <Clock size={13} className="text-red-400" />
+              <Clock size={13} className="text-red-400 shrink-0" />
               Open Daily: 9 AM - 9 PM
             </span>
             <a 
               href={`tel:${PHONE_NUMBER.replace(/\D/g,'')}`}
               className="text-white font-bold hover:text-red-400 transition-colors flex items-center gap-1 bg-red-600/20 px-2.5 py-0.5 rounded-full border border-red-500/30"
             >
-              <Phone size={11} className="text-red-400" />
+              <Phone size={11} className="text-red-400 shrink-0" />
               +91 {PHONE_NUMBER}
             </a>
           </div>
@@ -63,36 +75,31 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Main Glass Navbar */}
       <div className="bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-sm relative z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 sm:h-20 gap-2 sm:gap-4">
-            {/* Logo Section */}
+          <div className="flex justify-between items-center h-16 sm:h-20 gap-4">
+            {/* Brand Text Section (Apple logo removed) */}
             <Link 
               to="/" 
-              className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group shrink-0" 
+              className="flex flex-col cursor-pointer group shrink-0" 
               onClick={() => setMobileMenuOpen(false)}
             >
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center group-hover:bg-red-600 transition-all duration-300 group-hover:scale-105 shadow-sm">
-                <RedAppleLogo className="w-5 h-5 sm:w-6 sm:h-6 transition-colors group-hover:text-white" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg sm:text-2xl font-black text-gray-900 tracking-tight group-hover:text-red-600 transition-colors leading-none">
-                  {COMPANY_NAME}
-                </span>
-                <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-0.5">
-                  Halasuru • Bengaluru
-                </span>
-              </div>
+              <span className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 tracking-tight group-hover:text-red-600 transition-colors leading-none">
+                <span className="text-red-600">RED APPLE</span> MOBILE REPAIR
+              </span>
+              <span className="text-[9px] sm:text-[11px] uppercase tracking-widest text-gray-500 font-bold mt-1">
+                Halasuru • Bengaluru • Metro Pillar 125
+              </span>
             </Link>
 
-            {/* Desktop Navigation (Visible on lg: 1024px+) */}
-            <nav className="hidden lg:flex items-center gap-1 bg-gray-100/80 p-1.5 rounded-full border border-gray-200/70 shadow-inner">
+            {/* Desktop Navigation (Expanded spacing) */}
+            <nav className="hidden lg:flex items-center gap-1.5 bg-gray-100/90 p-1.5 rounded-full border border-gray-200/80 shadow-inner">
               {navItems.map((item) => (
                 <NavLink 
                   key={item.name}
                   to={item.path}
-                  className={({ isActive }) => `text-[11px] xl:text-xs uppercase tracking-wider font-extrabold px-3.5 py-1.5 xl:px-4 xl:py-2 rounded-full transition-all duration-200 whitespace-nowrap ${
+                  className={({ isActive }) => `text-xs xl:text-sm uppercase tracking-wider font-extrabold px-4 py-2 rounded-full transition-all duration-200 whitespace-nowrap ${
                     isActive
                       ? 'bg-red-600 text-white shadow-md shadow-red-500/30' 
-                      : 'text-gray-700 hover:text-red-600 hover:bg-white/80'
+                      : 'text-gray-700 hover:text-red-600 hover:bg-white/90'
                   }`}
                 >
                   {item.name}
@@ -104,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="hidden lg:flex items-center gap-3 shrink-0">
               <a 
                 href={`tel:${PHONE_NUMBER.replace(/\D/g,'')}`} 
-                className="flex items-center gap-2 font-bold text-gray-800 hover:text-red-600 transition-colors text-xs xl:text-sm bg-gray-50 hover:bg-gray-100 px-3 py-2 rounded-xl border border-gray-200 shadow-xs"
+                className="flex items-center gap-2 font-bold text-gray-800 hover:text-red-600 transition-colors text-xs xl:text-sm bg-gray-50 hover:bg-gray-100 px-3.5 py-2.5 rounded-xl border border-gray-200 shadow-xs"
               >
                 <div className="w-5 h-5 rounded-full bg-red-100 flex items-center justify-center text-red-600">
                   <Phone size={12} />
@@ -113,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
               </a>
               <Link 
                 to="/booking"
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-md shadow-red-500/20 text-xs sm:text-sm transform hover:-translate-y-0.5 active:scale-95 flex items-center gap-1.5"
+                className="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-md shadow-red-500/20 text-xs xl:text-sm transform hover:-translate-y-0.5 active:scale-95 flex items-center gap-2"
               >
                 <span>Book Repair</span>
                 <span className="bg-red-800 text-red-100 text-[10px] font-black px-1.5 py-0.5 rounded">FAST</span>

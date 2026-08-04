@@ -33,6 +33,7 @@ import {
 } from '../constants';
 import { RepairService } from '../types';
 import RevealOnScroll from '../components/RevealOnScroll';
+import AIDiagnosticTool from '../components/AIDiagnosticTool';
 
 export default function Services() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -166,6 +167,13 @@ export default function Services() {
               Book Pickup or Drop-in
             </Link>
           </div>
+        </RevealOnScroll>
+      </section>
+
+      {/* Gemini AI Smart Diagnostic */}
+      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto my-6">
+        <RevealOnScroll>
+          <AIDiagnosticTool />
         </RevealOnScroll>
       </section>
 

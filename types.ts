@@ -53,4 +53,10 @@ export interface PortfolioItem {
   category: string;
   image: string;
   description: string;
+  mediaType?: 'image' | 'video';
+  videoUrl?: string;
+  beforeImage?: string;
+  equipment?: string;
+  isUserUploaded?: boolean;
+  createdAt?: string;
 }

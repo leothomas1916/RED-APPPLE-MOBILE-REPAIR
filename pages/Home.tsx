@@ -27,6 +27,7 @@ import RevealOnScroll from '../components/RevealOnScroll';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import ProcessTimeline from '../components/ProcessTimeline';
 import DeviceModels from '../components/DeviceModels';
+import AIDiagnosticTool from '../components/AIDiagnosticTool';
 
 // Quick Estimator Data
 const ESTIMATOR_BRANDS = [
@@ -230,6 +231,15 @@ export default function Home() {
             </div>
           </div>
         </RevealOnScroll>
+      </section>
+
+      {/* Gemini AI Smart Diagnostic Section */}
+      <section className="py-6 bg-slate-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RevealOnScroll>
+            <AIDiagnosticTool />
+          </RevealOnScroll>
+        </div>
       </section>
 
       {/* Interactive Quick Price & Turnaround Estimator */}

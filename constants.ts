@@ -2,10 +2,16 @@ import { RepairService, ServiceType, Review, PortfolioItem } from './types';
 
 export const COMPANY_NAME = "Red Apple Mobile Repair";
 export const PHONE_NUMBER = "866-066-3776";
+export const PHONE_NUMBER_RAW = "8660663776";
+export const PHONE_NUMBER_FORMATTED = "+91 8660663776";
+export const HASHTAG_PHONE = "#8660663776";
+export const WHATSAPP_URL = "https://wa.me/918660663776?text=Hi%20Red%20Apple%20Halasuru,%20I%20need%20repair%20assistance%20for%20my%20device.";
 export const STORE_EMAIL = "redapple.repair@gmail.com";
+export const INSTAGRAM_URL = "https://www.instagram.com/red_apple_mobile_repair/";
+export const FACEBOOK_URL = "https://www.facebook.com/share/17ySmY8wrh/?mibextid=wwXIfr";
 export const ADDRESS = "Metro Pillar 125, Off MG Road Police Station, 37 Metro Road, Opp. Bhadra Landmark, Halasuru, Gupta Layout, Bengaluru, KA 560008";
 export const LANDMARK = "Metro Pillar 125, Opp. Bhadra Landmark, Halasuru";
-export const GOOGLE_MAPS_SHARE_URL = "https://share.google/lr0AlWn7bCavQYUyq";
+export const GOOGLE_MAPS_SHARE_URL = "https://share.google/ohRRuw6XISfoYKI9T";
 export const GOOGLE_MAPS_CID = "17991444583161020000";
 export const RATING_VAL = "4.9";
 export const REVIEW_COUNT_STR = "480+ Google Reviews";
@@ -221,30 +227,62 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 1,
     title: "iPhone 14 Pro Max",
-    category: "Laser Back Glass & Screen",
+    category: "iPhone Glass & Screen",
+    mediaType: "image",
     image: "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&q=80&w=800",
-    description: "TBK laser back glass removal & vacuum OCA display lamination with True Tone preservation."
+    beforeImage: "https://images.unsplash.com/photo-1598327105666-5b89351aff23?auto=format&fit=crop&q=80&w=1000",
+    description: "TBK laser back glass removal & vacuum OCA display lamination with True Tone preservation.",
+    equipment: "TBK Laser 958B & OCA Lamination Press"
   },
   {
     id: 2,
     title: "Samsung S23 Ultra Curved Display",
-    category: "Curved OLED Repair",
+    category: "Samsung Curved OLED",
+    mediaType: "image",
     image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&q=80&w=600",
-    description: "Curved edge glass separation & in-display fingerprint sensor re-calibration."
+    beforeImage: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&q=80&w=800",
+    description: "Curved edge glass separation & in-display fingerprint sensor re-calibration.",
+    equipment: "360° Rotating Curved Screen Separator"
   },
   {
     id: 3,
-    title: "Dead iPhone 13 Board",
-    category: "Level 4 Motherboard",
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=800",
-    description: "Audio IC micro-soldering & power rail short circuit repair for water damaged board."
+    title: "TBK Laser Machine Operation Reel",
+    category: "Video Reel Showcase",
+    mediaType: "video",
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800",
+    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-circuit-board-manufacturing-process-40348-large.mp4",
+    description: "Watch our automated non-contact TBK 958B laser breakdown shattered iPhone back glass cleanly in seconds.",
+    equipment: "TBK 958B Precision Fiber Laser"
   },
   {
     id: 4,
+    title: "Dead iPhone 13 Board Micro-Soldering",
+    category: "Micro-Soldering",
+    mediaType: "image",
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=800",
+    beforeImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
+    description: "Audio IC micro-soldering & power rail short circuit repair for water damaged board.",
+    equipment: "HD Trinocular Microscope & Hot Air Rework"
+  },
+  {
+    id: 5,
+    title: "MacBook Pro Liquid Clean & Screen",
+    category: "MacBook & iPad",
+    mediaType: "video",
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=800",
+    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-man-working-on-a-computer-motherboard-41584-large.mp4",
+    description: "Complete ultrasonic logic board de-oxidation and M2 display replacement.",
+    equipment: "Ultrasonic Chemical Bath & Thermal Camera"
+  },
+  {
+    id: 6,
     title: "Apple Watch Series 8",
     category: "Watch Glass & Battery",
+    mediaType: "image",
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=600",
-    description: "Shattered Sapphire glass replacement with water-seal gasket restoration."
+    beforeImage: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=800",
+    description: "Shattered Sapphire glass replacement with water-seal gasket restoration.",
+    equipment: "Precision Hot Wire & UV Curing Lamp"
   }
 ];
 

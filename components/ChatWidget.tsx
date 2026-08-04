@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, BrainCircuit } from 'lucide-react';
 import { ChatMessage } from '../types';
 import { sendMessageToGemini } from '../services/geminiService';
 
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
+  const [highThinking, setHighThinking] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: 'model', text: 'Hi! I am AppleBot. How can I help you with your device today?', timestamp: new Date() }
   ]);
@@ -29,7 +30,8 @@ const ChatWidget: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const responseText = await sendMessageToGemini(userMsg.text);
+      const historyForApi = messages.map(m => ({ role: m.role, text: m.text }));
+      const responseText = await sendMessageToGemini(userMsg.text, historyForApi, highThinking);
       setMessages(prev => [...prev, { role: 'model', text: responseText, timestamp: new Date() }]);
     } catch (error) {
       setMessages(prev => [...prev, { role: 'model', text: "Sorry, I'm having trouble connecting right now.", timestamp: new Date() }]);
@@ -58,14 +60,29 @@ const ChatWidget: React.FC = () => {
       {isOpen && (
         <div className="bg-white w-80 md:w-96 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 flex flex-col h-[500px] animate-fade-in-up">
           {/* Header */}
-          <div className="bg-red-600 p-4 flex justify-between items-center text-white">
+          <div className="bg-red-600 p-3.5 px-4 flex justify-between items-center text-white">
             <div className="flex items-center gap-2">
               <Bot size={20} />
-              <span className="font-semibold">Red Apple Assistant</span>
+              <span className="font-semibold text-sm">Red Apple Assistant</span>
             </div>
-            <button onClick={() => setIsOpen(false)} className="hover:bg-red-700 p-1 rounded">
-              <X size={20} />
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setHighThinking(!highThinking)}
+                className={`flex items-center gap-1 text-[11px] font-extrabold px-2 py-1 rounded-full border transition-all ${
+                  highThinking
+                    ? 'bg-purple-900/80 text-purple-200 border-purple-400 shadow-md'
+                    : 'bg-red-700/60 text-red-200 border-red-500/50 hover:bg-red-700'
+                }`}
+                title="Toggle High Thinking Reasoning Mode (gemini-3.1-pro-preview / ThinkingLevel.HIGH)"
+              >
+                <BrainCircuit size={13} className={highThinking ? 'animate-pulse text-purple-300' : ''} />
+                <span>{highThinking ? 'Thinking: HIGH' : 'Thinking'}</span>
+              </button>
+              <button onClick={() => setIsOpen(false)} className="hover:bg-red-700 p-1 rounded">
+                <X size={20} />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
